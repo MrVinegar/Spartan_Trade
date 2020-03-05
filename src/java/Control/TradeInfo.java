@@ -5,7 +5,7 @@
  */
 package Control;
 
-import Control.Trade.Trade;
+import Control.Trade.TradeItemList;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +47,7 @@ public class TradeInfo extends HttpServlet {
     protected void doPost(HttpServletRequest _request, HttpServletResponse _response)
             throws ServletException, IOException {
         String code = _request.getParameter("code");
-        Trade trade = new Trade(_request, _response);
+        TradeItemList trade = new TradeItemList(_request, _response);
         if(code == null || code == ""){
             //Err handler
             return;

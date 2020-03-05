@@ -1,4 +1,4 @@
-import static JOConverter.JSONprocessor.*;
+import static Helper.JSONprocessor.*;
 import Object.*;
 import java.util.*;
 import org.json.JSONException;
@@ -12,8 +12,8 @@ public class Test {
 
     public static void main(String[] args) throws JSONException {
 //        TestCase1();
-        TestCase2();
-//        TestCase3();
+//        TestCase2();
+        TestCase3();
     }
 
     public static void TestCase1() throws JSONException {
@@ -78,8 +78,15 @@ public class Test {
         System.out.print(objectToJson(STLPVlist));
     }
     
-    public static void TestCase3() throws JSONException{
-        EmailvalCode ec = new EmailvalCode("Example@uncg.edu");
-        System.out.print(objectToJson(ec));
+    public static void TestCase3(){
+        System.out.println(int.class.toString());
+        System.out.println(boolean.class.toString());
+        System.out.println(String.class.toString());
+        System.out.println(long.class.toString());
+        System.out.println(float.class.toString());
+        System.out.println(double.class.toString());
+        System.out.println(char.class.toString());
+        System.out.println(short.class.toString());
+        System.out.println(byte.class.toString());
     }
 }
