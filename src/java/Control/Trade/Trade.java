@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 class Trade {
     HttpServletRequest request;
-    private HttpServletResponse response;
+    HttpServletResponse response;
 
     public Trade(HttpServletRequest _request, HttpServletResponse _response) {
         this.request = request;

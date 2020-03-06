@@ -5,6 +5,9 @@
  */
 package Object;
 
+import java.net.URI;
+import org.apache.http.client.utils.URIBuilder;
+
 /**
  *
  * @date 2020-3-5 13:58:41
@@ -60,5 +63,17 @@ public class ValidationKey {
 
     public String getValidationType() {
         return this.validationType;
+    }
+    
+    public String getValidationUrl(){
+        URIBuilder valLink = new URIBuilder()
+                .setScheme("http")
+                .setHost("{Placeholder}")
+                .setPath("/validateEmail")
+                .setParameter("vkey", this.validationKey)
+                .setParameter("vtype", this.validationType)
+                .setParameter("id", Integer.toString(this.entityId))
+                .setParameter("vid",Integer.toString(this.validationId));
+        return valLink.toString();
     }
 }

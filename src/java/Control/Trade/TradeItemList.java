@@ -27,32 +27,21 @@ public class TradeItemList extends Trade {
     }
     
     public void getHmPagePreviewList() throws IOException {
-        String json = getJsonTextFromAPI(API.STPV_API);
-        this.sendAjaxResponse(json);
+        String json = sendHttpRequest(API.STPV_API, null, "GET");
+        sendAjaxResponse(this.response,json);
     }
     
     public void getSearchResults(String _category, String _page) throws IOException, ServletException{
-        String json = getJsonTextFromAPI(API.STPV_API + _category);
+        String json = sendHttpRequest(API.STSR_API + _category, null, "GET");
         List STSRlist = new ArrayList<STList_ITEM>();
         ArrayList<STList_ITEM> SearchResult = (ArrayList<STList_ITEM>)jsonToObject(json, STSRlist);
-        this.forwardRequestWithAttr(SearchResult, "SearchResult", "Http://Placeholder");
+        forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", "Http://Placeholder");
     }
     
     public void getItemDetail(String _itemid) throws IOException, ServletException{
-        String json = getJsonTextFromAPI(API.STPV_API + _itemid);
+        String json = sendHttpRequest(API.ST_ITEM_DETAIL_API + _itemid, null, "GET");
         STList_ITEM ItemDetail = jsonToObject(json, STList_ITEM.class);
-        this.forwardRequestWithAttr(ItemDetail, "ItemDetail", "Http://Placeholder");
+        forwardRequestWithAttr(this.request, this.response, ItemDetail, "ItemDetail", "Http://Placeholder");
     }
     
-    private void sendAjaxResponse(String _text) throws IOException{
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8"); 
-        response.getWriter().write(_text);
-    }
-    
-    private void forwardRequestWithAttr(Object _objects, String _attrname, String _to) throws ServletException, IOException{
-        request.setAttribute(_attrname, _objects);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher(_to);
-        requestDispatcher.forward(request,response);
-    }
 }

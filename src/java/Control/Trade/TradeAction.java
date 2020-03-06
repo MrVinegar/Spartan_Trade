@@ -5,10 +5,16 @@
  */
 package Control.Trade;
 
-import static Helper.HttpHandler.loadFromHttpRequest;
+import static Dict.API.ST_ITEM_DETAIL_API;
+import Helper.EmailHandler;
+import static Helper.HttpHandler.*;
+import static Helper.JSONprocessor.*;
 import Object.ItemPostedRequest;
+import Object.ValidationKey;
+import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONException;
 
 /**
  *
@@ -21,9 +27,16 @@ public class TradeAction extends Trade {
         super(_request, _response);
     }
 
-    public void postItem() throws InstantiationException, IllegalAccessException {
+    public void postItem() throws InstantiationException, IllegalAccessException, JSONException, IOException {
         ItemPostedRequest Ipr = loadFromHttpRequest(this.request, ItemPostedRequest.class);
-        
+        String jsonResponse = sendHttpRequest(ST_ITEM_DETAIL_API, objectToJson(Ipr), "POST");
+        ValidationKey vkey = jsonToObject(jsonResponse,ValidationKey.class);
+        EmailHandler Eh = new EmailHandler("username","password","smtp.gmail.com","25");
+        if(Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())){
+            sendAjaxResponse(this.response,"");
+        }else{
+            sendAjaxResponse(this.response,"");
+        }
     }
 
 }
