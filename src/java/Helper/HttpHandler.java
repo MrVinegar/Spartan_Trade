@@ -12,6 +12,9 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.*;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -57,33 +60,80 @@ public class HttpHandler {
         }
     }
 
-    public static String sendHttpRequest(String _URL, String _Json, String _method) throws UnsupportedEncodingException, IOException {
+    public static HttpResponse sendHttpRequest(String _URL, String _Json, String _method, Map _headers) throws UnsupportedEncodingException, IOException {
         //Pre-set Variables
         StringEntity httpEntity = new StringEntity(_Json);
         httpEntity.setContentType("application/json");
         HttpResponse response = null;
-
+        
         //Creating Request and retrieve Response
         switch (_method) {
             case "POST":
-                HttpPost postRequest = new HttpPost(_URL);
+                HttpPost postRequest = buildHttpPost(_URL, httpEntity, _headers);
                 postRequest.setEntity(httpEntity);
                 response = Request(postRequest);
                 break;
             case "GET":
-                HttpGet getRequest = new HttpGet(_URL);
+                HttpGet getRequest = buildHttpGet(_URL,_headers);
                 response = Request(getRequest);
                 break;
         }
+        return response;
+    }
+    
+    
 
-        //Handling Response
-        if (response.getStatusLine().getStatusCode() != 200) {
-            throw new RuntimeException("Failed Request: error code - "
-                    + response.getStatusLine().getStatusCode());
+    public static void sendAjaxResponse(HttpServletResponse _response, String _text) throws IOException {
+        _response.setContentType("text/plain");
+        _response.setCharacterEncoding("UTF-8");
+        _response.getWriter().write(_text);
+    }
+
+    public static void forwardRequestWithAttr(HttpServletRequest _request, HttpServletResponse _response, Object _objects, String _attrname, String _to) throws ServletException, IOException {
+        _request.setAttribute(_attrname, _objects);
+        RequestDispatcher requestDispatcher = _request.getRequestDispatcher(_to);
+        requestDispatcher.forward(_request, _response);
+    }
+    
+    private static HttpPost buildHttpPost(String _URL,StringEntity _httpEntity, Map _headerMaps){
+        HttpPost postRequest = new HttpPost(_URL);
+        postRequest.setEntity(_httpEntity);
+        if(_headerMaps != null){
+            Iterator itr = _headerMaps.entrySet().iterator();
+            while(itr.hasNext()){
+                Entry<String,String> entry = (Entry<String,String>) itr.next();
+                postRequest.setHeader(entry.getKey(), entry.getValue());
+            }
         }
+        return postRequest;
+    }
 
+    private static HttpGet buildHttpGet(String _URL, Map _headerMaps){
+        HttpGet getRequest = new HttpGet(_URL);
+        if(_headerMaps != null){
+            Iterator itr = _headerMaps.entrySet().iterator();
+            while(itr.hasNext()){
+                Entry<String,String> entry = (Entry<String,String>) itr.next();
+                getRequest.setHeader(entry.getKey(), entry.getValue());
+            }
+        }
+        return getRequest;
+    }
+    
+    private static HttpResponse Request(HttpPost _post) throws IOException {
+        HttpClient hclient = HttpClientBuilder.create().build();    
+        return hclient.execute(_post);
+    }
+
+    private static HttpResponse Request(HttpGet _get) throws IOException {
+        HttpClient hclient = HttpClientBuilder.create().build();
+        return hclient.execute(_get);
+    }
+    
+    public static String getResponseContent(HttpResponse _response) throws IOException {
+        responseCheck(_response);
         //Returning Response
-        BufferedReader in = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+        BufferedReader in = new BufferedReader(new InputStreamReader((_response.getEntity().getContent())));
         String inputLine = null;
         StringBuilder info = new StringBuilder();
         while ((inputLine = in.readLine()) != null) {
@@ -92,39 +142,13 @@ public class HttpHandler {
         in.close();
         return in.toString();
     }
-
-//    public static String getJsonTextFromAPI(String _URL) throws IOException {
-//        StringBuilder info = new StringBuilder();
-//        URL api = new URL(_URL);
-//        URLConnection connection = api.openConnection();
-//        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//        String inputLine = null;
-//        while ((inputLine = in.readLine()) != null) {
-//            info.append(inputLine);
-//        }
-//        in.close();
-//        return in.toString();
-//    }
-    public static void sendAjaxResponse(HttpServletResponse _response,String _text) throws IOException {
-        _response.setContentType("text/plain");
-        _response.setCharacterEncoding("UTF-8");
-        _response.getWriter().write(_text);
-    }
-
-    public static void forwardRequestWithAttr(HttpServletRequest _request,HttpServletResponse _response,Object _objects, String _attrname, String _to) throws ServletException, IOException {
-        _request.setAttribute(_attrname, _objects);
-        RequestDispatcher requestDispatcher = _request.getRequestDispatcher(_to);
-        requestDispatcher.forward(_request, _response);
-    }
-
-    private static HttpResponse Request(HttpPost _post) throws IOException {
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        return httpClient.execute(_post);
-    }
-
-    private static HttpResponse Request(HttpGet _get) throws IOException {
-        HttpClient httpClient = HttpClientBuilder.create().build();
-        return httpClient.execute(_get);
+    
+    private static void responseCheck(HttpResponse _response){
+        //Handling Response
+        if (_response.getStatusLine().getStatusCode() != 200) {
+            throw new RuntimeException("Failed Request: error code - "
+                    + _response.getStatusLine().getStatusCode());
+        }
     }
 
     private static Object castHelper(Class _attrType, String _from) {

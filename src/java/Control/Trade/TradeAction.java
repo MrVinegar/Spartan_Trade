@@ -5,6 +5,7 @@
  */
 package Control.Trade;
 
+import Control.ServletBased;
 import static Dict.API.ST_ITEM_DETAIL_API;
 import Helper.EmailHandler;
 import static Helper.HttpHandler.*;
@@ -21,7 +22,7 @@ import org.json.JSONException;
  * @date 2020-3-5 13:53:03
  * @author Yi Qiu
  */
-public class TradeAction extends Trade {
+public class TradeAction extends ServletBased {
 
     public TradeAction(HttpServletRequest _request, HttpServletResponse _response) {
         super(_request, _response);
@@ -29,7 +30,7 @@ public class TradeAction extends Trade {
 
     public void postItem() throws InstantiationException, IllegalAccessException, JSONException, IOException {
         ItemPostedRequest Ipr = loadFromHttpRequest(this.request, ItemPostedRequest.class);
-        String jsonResponse = sendHttpRequest(ST_ITEM_DETAIL_API, objectToJson(Ipr), "POST");
+        String jsonResponse = getResponseContent(sendHttpRequest(ST_ITEM_DETAIL_API, objectToJson(Ipr), "POST",null));
         ValidationKey vkey = jsonToObject(jsonResponse,ValidationKey.class);
         EmailHandler Eh = new EmailHandler("username","password","smtp.gmail.com","25");
         if(Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())){

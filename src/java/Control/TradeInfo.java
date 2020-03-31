@@ -57,13 +57,10 @@ public class TradeInfo extends HttpServlet {
                 trade.getHmPagePreviewList();
                 break;
             case "STSR":
-                String category = _request.getParameter("category");
-                String page = _request.getParameter("page");
-                trade.getSearchResults(category, page);
+                trade.getSearchResults();
                 break;
             case "STitem":
-                String itemid = _request.getParameter("itemid");
-                trade.getItemDetail(itemid);
+                trade.getItemDetail();
                 break;
         }
         

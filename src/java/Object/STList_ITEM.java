@@ -1,5 +1,10 @@
 package Object;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @date 2020-3-2 22:33:15
@@ -7,124 +12,159 @@ package Object;
  */
 public class STList_ITEM {
 
-    private int itemId;
-
-    private String title;
-
-    private String description;
-
-    private String status;
-
-    private String phone;
-
-    private String contactMethod;
-
-    private String createdDate;
-
-    private int categoryId;
-
-    private String userId;
-
-    private int validationId;
-
-    private String hasImage;
-
-    private String email;
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
+    public int itemId;
+    public String title;
+    public String description;
+    public String status;
+    public String phone;
+    public String contactMethod;
+    public Date createdDate;
+    public int categoryId;
+    public String userId;
+    public int validationId;
+    public String email;
+    public Date updatedDate;
+    public double price;
+    public List<Image> images;
 
     public int getItemId() {
-        return this.itemId;
+        return itemId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setItemId(int _itemId) {
+        this.itemId = _itemId;
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitle(String _title) {
+        this.title = _title;
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDescription(String _description) {
+        this.description = _description;
     }
 
     public String getStatus() {
-        return this.status;
+        return status;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setStatus(String _status) {
+        this.status = _status;
     }
 
     public String getPhone() {
-        return this.phone;
+        return phone;
     }
 
-    public void setContactMethod(String contactMethod) {
-        this.contactMethod = contactMethod;
+    public void setPhone(String _phone) {
+        this.phone = _phone;
     }
 
     public String getContactMethod() {
-        return this.contactMethod;
+        return contactMethod;
     }
 
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
+    public void setContactMethod(String _contactMethod) {
+        this.contactMethod = _contactMethod;
     }
 
-    public String getCreatedDate() {
-        return this.createdDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCreatedDate(String _createdDate) throws ParseException {
+        this.createdDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(_createdDate);  
     }
 
     public int getCategoryId() {
-        return this.categoryId;
+        return categoryId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCategoryId(int _categoryId) {
+        this.categoryId = _categoryId;
     }
 
     public String getUserId() {
-        return this.userId;
+        return userId;
     }
 
-    public void setValidationId(int validationId) {
-        this.validationId = validationId;
+    public void setUserId(String _userId) {
+        this.userId = _userId;
     }
 
     public int getValidationId() {
-        return this.validationId;
+        return validationId;
     }
 
-    public void setHasImage(String hasImage) {
-        this.hasImage = hasImage;
+    public void setValidationId(int _validationId) {
+        this.validationId = _validationId;
     }
 
-    public String getHasImage() {
-        return this.hasImage;
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getEmail() {
-        return this.email;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    
+    
+    public class Image {
+
+        public int imageId;
+        public String fileName;
+
+        public Image() {
+        }
+
+        public int getImageId() {
+            return imageId;
+        }
+
+        public void setImageId(int _imageId) {
+            this.imageId = _imageId;
+        }
+
+        public String getFileName() {
+            return fileName;
+        }
+
+        public void setFileName(String _fileName) {
+            this.fileName = _fileName;
+        }
+        
+        
+    }
 }
