@@ -21,10 +21,5 @@ public class ServletBased {
     public ServletBased(HttpServletRequest _request, HttpServletResponse _response) {
         this.request = _request;
         this.response = _response;
-    }
-    
-    public void close(){
-        this.close();
-    }
-    
+    }  
 }

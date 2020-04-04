@@ -22,11 +22,20 @@ public class ItemPostedRequest {
 
     private int categoryId;
 
-    private String userId;
-
-    private String hasImage;
-
     private String email;
+
+    private float price;
+
+    public ItemPostedRequest() {
+        this.title = "null";
+        this.description = "null";
+        this.phone = "null";
+        this.contactMethod = "null";
+        this.categoryId = 1;
+        this.email = "null";
+    }
+
+
 
     public void setTitle(String _title) {
         this.title = _title;
@@ -68,27 +77,19 @@ public class ItemPostedRequest {
         return this.categoryId;
     }
 
-    public void setUserId(String _userId) {
-        this.userId = _userId;
-    }
-
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public void setHasImage(String _hasImage) {
-        this.hasImage = _hasImage;
-    }
-
-    public String getHasImage() {
-        return this.hasImage;
-    }
-
     public void setEmail(String _email) {
         this.email = _email;
     }
 
     public String getEmail() {
         return this.email;
+    }
+
+    public void setPrice(float _price) {
+        this.price = _price;
+    }
+
+    public float getPrice() {
+        return this.price;
     }
 }

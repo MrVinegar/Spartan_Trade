@@ -32,7 +32,7 @@ public class TradeInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest _request, HttpServletResponse _response)
             throws ServletException, IOException {
-        
+        doPost(_request, _response);
     }
 
     /**
@@ -63,8 +63,7 @@ public class TradeInfo extends HttpServlet {
                 trade.getItemDetail();
                 break;
         }
-        
-        trade.close();
+
     }
 
     /**

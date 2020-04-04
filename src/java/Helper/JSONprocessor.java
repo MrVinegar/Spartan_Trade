@@ -6,6 +6,7 @@ import java.lang.reflect.*;
 import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.util.List;
 public class JSONprocessor {
 
     public static <T> T jsonToObject(String _jsonString, Class<T> _object) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().serializeNulls().create();
         return gson.fromJson(_jsonString, _object);
     }
 
@@ -23,7 +24,6 @@ public class JSONprocessor {
         String jsonString = _jsonString.toString();
         return jsonToObject(jsonString, _object);
     }
-    
 
     public static <T> T jsonToObject(JSONObject _jsonString, Class<T> _object) {
         String jsonString = _jsonString.toString();
@@ -33,20 +33,20 @@ public class JSONprocessor {
     public static <T> T jsonToObject(String _jsonString, List<T> _object) {
         Type objType = new TypeToken<ArrayList<T>>() {
         }.getType();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().serializeNulls().create();
         return gson.fromJson(_jsonString, objType);
     }
 
     public static <T> JSONObject objectToJson(T _object) throws JSONException {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().serializeNulls().create();
         String jsonString = gson.toJson(_object);
         return new JSONObject(jsonString);
     }
 
     public static <T> JSONArray objectToJson(List<T> _object) throws JSONException {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().serializeNulls().create();
         String jsonString = gson.toJson(_object);
         return new JSONArray(jsonString);
     }
-   
+
 }

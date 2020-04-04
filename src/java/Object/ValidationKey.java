@@ -68,7 +68,7 @@ public class ValidationKey {
     public String getValidationUrl(){
         URIBuilder valLink = new URIBuilder()
                 .setScheme("http")
-                .setHost("{Placeholder}")
+                .setHost("ec2-3-93-23-132.compute-1.amazonaws.com:8080")
                 .setPath("/validateEmail")
                 .setParameter("vkey", this.validationKey)
                 .setParameter("vtype", this.validationType)

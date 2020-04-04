@@ -10,6 +10,7 @@ import static Helper.JSONprocessor.jsonToObject;
 import static Helper.JSONprocessor.objectToJson;
 import Object.ValidationKey;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,9 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -32,16 +35,17 @@ class Account extends ServletBased {
         super(_request, _response);
     }
 
-    protected void signUp() throws JSONException, IOException {
+    public void signUp() throws JSONException, IOException {
         Map json = new HashMap() {
             {
                 put("email", request.getParameter("email"));
                 put("password", request.getParameter("password"));
             }
         };
-        String jsonResponse = getResponseContent(sendHttpRequest(USER_API, objectToJson(json), "POST", null));
+        String sendJson = objectToJson(json).toString();
+        String jsonResponse = getResponseContent(sendHttpRequest(USER_API, sendJson, "POST", null));
         ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
-        EmailHandler Eh = new EmailHandler("username", "password", "smtp.gmail.com", "25");
+        EmailHandler Eh = new EmailHandler("username", "password", "Gmail");
         if (Eh.sendMail(vkey.getEmail(), "Email Validation", vkey.getValidationUrl())) {
             sendAjaxResponse(this.response, "");
         } else {
@@ -49,7 +53,7 @@ class Account extends ServletBased {
         }
     }
 
-    protected void signIn() throws IOException {
+    public void signIn() throws IOException {
         String ecode = Base64.getEncoder().encodeToString(
                 (request.getParameter("email") + ":" + request.getParameter("password")).getBytes()
         );
@@ -59,7 +63,8 @@ class Account extends ServletBased {
             }
         };
         HttpResponse response = sendHttpRequest(USER_API, null, "POST", headerMap);
-        Header authorization = response.getFirstHeader("Authorization");
+        Header authorization = response.getFirstHeader("Set-Cookie");
         String jsonResponse = getResponseContent(response);
     }
+
 }

@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Control.Trade;
 
 import Control.ServletBased;
-import static Dict.API.ST_ITEM_DETAIL_API;
+import Dict.API;
 import Helper.EmailHandler;
 import static Helper.HttpHandler.*;
 import static Helper.JSONprocessor.*;
@@ -19,7 +14,7 @@ import org.json.JSONException;
 
 /**
  *
- * @date 2020-3-5 13:53:03
+ * @date 2020-3-3 12:07:01
  * @author Yi Qiu
  */
 public class TradeAction extends ServletBased {
@@ -28,16 +23,27 @@ public class TradeAction extends ServletBased {
         super(_request, _response);
     }
 
-    public void postItem() throws InstantiationException, IllegalAccessException, JSONException, IOException {
-        ItemPostedRequest Ipr = loadFromHttpRequest(this.request, ItemPostedRequest.class);
-        String jsonResponse = getResponseContent(sendHttpRequest(ST_ITEM_DETAIL_API, objectToJson(Ipr), "POST",null));
-        ValidationKey vkey = jsonToObject(jsonResponse,ValidationKey.class);
-        EmailHandler Eh = new EmailHandler("username","password","smtp.gmail.com","25");
-        if(Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())){
-            sendAjaxResponse(this.response,"");
-        }else{
-            sendAjaxResponse(this.response,"");
+    public static void postItemDefault() throws InstantiationException, IllegalAccessException, JSONException, IOException {
+        ItemPostedRequest Ipr = new ItemPostedRequest();
+        String sendJson = objectToJson(Ipr).toString();
+        String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.ST_ITEM_DETAIL_API, sendJson, "POST", null));
+        ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
+        EmailHandler Eh = new EmailHandler("username", "password", "Gmail");
+        if (Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())) {
+            //sendAjaxResponse(this.response,"");
+        } else {
+            //sendAjaxResponse(this.response,"");
         }
+    }
+
+    public static void postItemByUser(ItemPostedRequest _Ipr, int _userID) throws JSONException, IOException {
+        String sendJson = objectToJson(_Ipr).toString();
+        String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.USER_API + "/" + _userID + "/items", sendJson, "POST", null));
+    }
+
+    public static void updateItemByUser(ItemPostedRequest _Ipr, int _userID) throws IOException, JSONException {
+        String sendJson = objectToJson(_Ipr).toString();
+        String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.USER_API + "/" + _userID + "/items" + "", sendJson, "PUT", null));
     }
 
 }

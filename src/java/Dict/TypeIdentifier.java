@@ -21,4 +21,7 @@ public class TypeIdentifier {
     public final static String DOUBLE = "double";
     public final static String CHAR = "char";
     public final static String BYTE = "byte";
+    public final static String APACHE_HTTP_POST = "org.apache.http.client.methods.HttpPost";
+    public final static String APACHE_HTTP_PUT = "org.apache.http.client.methods.HttpPut";
+    public final static String APACHE_HTTP_GET = "org.apache.http.client.methods.HttpGet";
 }

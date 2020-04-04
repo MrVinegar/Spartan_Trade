@@ -25,14 +25,14 @@ public class TradeItemList extends ServletBased {
     }
 
     public void getHmPagePreviewList() throws IOException {
-        String json = getResponseContent(sendHttpRequest(API.STPV_API, null, "GET",null));
+        String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.STPV_API, null, "GET",null));
         sendAjaxResponse(this.response, json);
     }
 
     public void getSearchResults() throws IOException, ServletException {
         String category = this.request.getParameter("category");
         String page = this.request.getParameter("page");
-        String json = getResponseContent(sendHttpRequest(API.STSR_API + category, null, "GET",null));
+        String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.STSR_API + category, null, "GET",null));
         List STSRlist = new ArrayList<STList_SR>();
         ArrayList<STList_SR> SearchResult = (ArrayList<STList_SR>) jsonToObject(json, STSRlist);
         forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", "Http://Placeholder");
@@ -40,9 +40,16 @@ public class TradeItemList extends ServletBased {
 
     public void getItemDetail() throws IOException, ServletException {
         String itemid = this.request.getParameter("itemid");
-        String json = getResponseContent(sendHttpRequest(API.ST_ITEM_DETAIL_API + itemid, null, "GET",null));
+        String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.ST_ITEM_DETAIL_API + itemid, null, "GET",null));
         STList_ITEM ItemDetail = jsonToObject(json, STList_ITEM.class);
         forwardRequestWithAttr(this.request, this.response, ItemDetail, "ItemDetail", "Http://Placeholder");
     }
 
+    public void getUserItems() throws IOException, ServletException{
+        String userid = this.request.getParameter("userid");
+        String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.STSR_API + userid, null, "GET",null));
+        List STSRlist = new ArrayList<STList_SR>();
+        ArrayList<STList_SR> SearchResult = (ArrayList<STList_SR>) jsonToObject(json, STSRlist);
+        forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", "Http://Placeholder");
+    }
 }
