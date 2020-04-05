@@ -2,6 +2,7 @@ package Control.Trade;
 
 import Control.ServletBased;
 import Dict.API;
+import Dict.EmailServer;
 import Helper.EmailHandler;
 import static Helper.HttpHandler.*;
 import static Helper.JSONprocessor.*;
@@ -28,7 +29,7 @@ public class TradeAction extends ServletBased {
         String sendJson = objectToJson(Ipr).toString();
         String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.ST_ITEM_DETAIL_API, sendJson, "POST", null));
         ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
-        EmailHandler Eh = new EmailHandler("username", "password", "Gmail");
+        EmailHandler Eh = new EmailHandler(EmailServer.USERNAME, EmailServer.PASSWORD, EmailServer.TYPE_GMAIL);
         if (Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())) {
             //sendAjaxResponse(this.response,"");
         } else {

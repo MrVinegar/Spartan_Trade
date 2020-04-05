@@ -7,17 +7,20 @@ package Control;
 
 import Control.Trade.TradeItemList;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONException;
 
 /**
  *
  * @author Yi Qiu
  */
-@WebServlet(name = "TradeInfo", urlPatterns = {"/Trade"})
+@WebServlet(urlPatterns = {"/Search"})
 public class TradeInfo extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -46,22 +49,26 @@ public class TradeInfo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest _request, HttpServletResponse _response)
             throws ServletException, IOException {
-        String code = _request.getParameter("code");
-        TradeItemList trade = new TradeItemList(_request, _response);
-        if(code == null || code == ""){
-            //Err handler
-            return;
-        }
-        switch(code){
-            case "STPV":
-                trade.getHmPagePreviewList();
-                break;
-            case "STSR":
-                trade.getSearchResults();
-                break;
-            case "STitem":
-                trade.getItemDetail();
-                break;
+        try {
+            String code = _request.getParameter("code");
+            TradeItemList trade = new TradeItemList(_request, _response);
+            if(code == null || code == ""){
+                //Err handler
+                return;
+            }
+            switch(code){
+                case "STPV":
+                    trade.getHmPagePreviewList();
+                    break;
+                case "STSR":
+                    trade.getSearchResults();
+                    break;
+                case "STitem":
+                    trade.getItemDetail();
+                    break;
+            }
+        } catch (JSONException ex) {
+            Logger.getLogger(TradeInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

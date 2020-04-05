@@ -18,14 +18,14 @@ public class STList_ITEM {
     public String status;
     public String phone;
     public String contactMethod;
-    public Date createdDate;
+    public String createdDate;
     public int categoryId;
     public String userId;
     public int validationId;
     public String email;
-    public Date updatedDate;
+    public String updatedDate;
     public double price;
-    public List<Image> images;
+    public List<String> images;
 
     public int getItemId() {
         return itemId;
@@ -75,12 +75,12 @@ public class STList_ITEM {
         this.contactMethod = _contactMethod;
     }
 
-    public Date getCreatedDate() {
+    public String getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(String _createdDate) throws ParseException {
-        this.createdDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(_createdDate);  
+    public void setCreatedDate(String _createdDate){
+        this.createdDate = _createdDate;
     }
 
     public int getCategoryId() {
@@ -115,27 +115,27 @@ public class STList_ITEM {
         this.email = email;
     }
 
-    public Date getUpdatedDate() {
+    public String getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setUpdatedDate(String _updatedDate) {
+        this.updatedDate = _updatedDate;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPrice(double _price) {
+        this.price = _price;
     }
 
-    public List<Image> getImages() {
+    public List<String> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(List<String> images) {
         this.images = images;
     }
 

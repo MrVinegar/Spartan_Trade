@@ -24,7 +24,7 @@ public class ItemPostedRequest {
 
     private String email;
 
-    private float price;
+    private double price;
 
     public ItemPostedRequest() {
         this.title = "null";
@@ -89,7 +89,7 @@ public class ItemPostedRequest {
         this.price = _price;
     }
 
-    public float getPrice() {
+    public Double getPrice() {
         return this.price;
     }
 }

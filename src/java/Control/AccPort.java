@@ -1,10 +1,14 @@
 package Control;
 import java.io.IOException;
+import Control.Account.Account;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONException;
 
 /**
  *
@@ -39,18 +43,23 @@ public class AccPort extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest _request, HttpServletResponse _response)
             throws ServletException, IOException {
-        String code = _request.getParameter("code");
-        if(code == null || code == ""){
-            //Err handler
-            return;
-        }
-        switch(code){
-            case "EmailValidation":
-                break;
-            case "SignUp":
-                break;
-            case "SignIn":
-                break;
+        try {
+            String code = _request.getParameter("code");
+            Account acc = new Account(_request,_response);
+            if(code == null || code == ""){
+                //Err handler
+                return;
+            }
+            switch(code){
+                case "SignUp":
+                    acc.signUp();
+                    break;
+                case "SignIn":
+                    acc.signIn();
+                    break;
+            }
+        } catch (JSONException ex) {
+            Logger.getLogger(AccPort.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

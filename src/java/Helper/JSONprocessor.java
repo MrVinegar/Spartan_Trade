@@ -6,7 +6,6 @@ import java.lang.reflect.*;
 import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -16,6 +15,9 @@ import java.util.Map;
 public class JSONprocessor {
 
     public static <T> T jsonToObject(String _jsonString, Class<T> _object) {
+        if (_jsonString == null || _jsonString == "")
+            return null;
+        
         Gson gson = new GsonBuilder().serializeNulls().create();
         return gson.fromJson(_jsonString, _object);
     }
@@ -33,6 +35,10 @@ public class JSONprocessor {
     public static <T> T jsonToObject(String _jsonString, List<T> _object) {
         Type objType = new TypeToken<ArrayList<T>>() {
         }.getType();
+        
+        if (_jsonString == null || _jsonString == "")
+            return null;
+        
         Gson gson = new GsonBuilder().serializeNulls().create();
         return gson.fromJson(_jsonString, objType);
     }

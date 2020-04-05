@@ -6,12 +6,14 @@
 package Helper;
 
 import static Dict.TypeIdentifier.*;
+import static Helper.JSONprocessor.objectToJson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.*;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -27,6 +29,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 
 /**
  *
@@ -88,10 +91,13 @@ public class HttpHandler {
         return response;
     }
 
-    public static void sendAjaxResponse(HttpServletResponse _response, String _text) throws IOException {
+    public static void sendAjaxResponse(HttpServletResponse _response, String _status, String _text) throws IOException, JSONException {
         _response.setContentType("text/plain");
         _response.setCharacterEncoding("UTF-8");
-        _response.getWriter().write(_text);
+        Map<String,String> ret = new HashMap();
+        ret.put("status", _status);
+        ret.put("content", _text);
+        _response.getWriter().write(objectToJson(ret).toString());
     }
 
     public static void forwardRequestWithAttr(HttpServletRequest _request, HttpServletResponse _response, Object _objects, String _attrname, String _to) throws ServletException, IOException {

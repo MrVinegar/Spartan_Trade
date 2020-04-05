@@ -10,7 +10,6 @@ import Object.*;
 import java.io.IOException;
 import java.util.*;
 import javax.servlet.ServletException;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 
 /**
@@ -24,7 +23,7 @@ public class Test {
 //        postItem();
 //        getHmPagePreviewList();
 //        getSearchResults();
-//        getItemDetail();
+        getItemDetail();
 //        signUp();
 //        getUserItems();
     }
