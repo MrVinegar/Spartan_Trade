@@ -12,4 +12,5 @@ public class API {
     public final static String ST_ITEM_DETAIL_API = "items/";
     public final static String USER_API = "users";
     public final static String REGISTER_API = "register";
+    public final static String LOGIN_API = "login";
 }

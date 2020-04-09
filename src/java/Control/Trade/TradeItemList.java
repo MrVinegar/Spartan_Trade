@@ -25,15 +25,30 @@ public class TradeItemList extends ServletBased {
 
     private static final int ITEM_PER_PAGE = 12;
     
+    /**
+     * initialize the TradeItemList object.
+     * @param _request HttpServletRequest
+     * @param _response HttpServletResponse
+     */
     public TradeItemList(HttpServletRequest _request, HttpServletResponse _response) {
         super(_request, _response);
     }
 
+    /**
+     * Get 5 newest posts in each catagory, return the data in Ajax way.
+     * @throws IOException
+     * @throws JSONException
+     */
     public void getHmPagePreviewList() throws IOException, JSONException {
         String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.STPV_API, null, "GET",null));
         sendAjaxResponse(this.response,"", json);
     }
 
+    /**
+     * Get 12 items for pageNo=N, return a STPagination object.
+     * @throws IOException
+     * @throws ServletException
+     */
     public void getSearchResults() throws IOException, ServletException {
         String category = this.request.getParameter("category");
         String page = this.request.getParameter("page");
@@ -43,6 +58,12 @@ public class TradeItemList extends ServletBased {
         forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", "Http://Placeholder");
     }
 
+    /**
+     * Get detail infomation of one item base on its item_id,
+     * return a STList_ITEM object.
+     * @throws IOException
+     * @throws ServletException
+     */
     public void getItemDetail() throws IOException, ServletException {
         String itemid = this.request.getParameter("itemid");
         String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.ST_ITEM_DETAIL_API + itemid,
@@ -51,6 +72,11 @@ public class TradeItemList extends ServletBased {
         forwardRequestWithAttr(this.request, this.response, ItemDetail, "ItemDetail", "Http://Placeholder");
     }
 
+    /**
+     * Get all items for user:user_id, return a ArrayList of STList_SR object.
+     * @throws IOException
+     * @throws ServletException
+     */
     public void getUserItems() throws IOException, ServletException{
         String userid = this.request.getParameter("userid");
         String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.USER_API + "/" + userid,
@@ -60,5 +86,19 @@ public class TradeItemList extends ServletBased {
         forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", "Http://Placeholder");
     }
     
+    /**
+     * Get a specific item base on its item_id for user:user_id,
+     * return a STList_ITEM object.
+     * @throws IOException
+     * @throws ServletException
+     */
+    public void getTargetUserItem() throws IOException, ServletException{
+        String userid = this.request.getParameter("userid");
+        int itemID = Integer.parseInt(this.request.getParameter("itemID"));
+        String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.USER_API + "/" + userid + "/items/" + itemID,
+                null, "GET", (Map)this.request.getSession().getAttribute("Authorization64")));
+        STList_ITEM ItemDetail = jsonToObject(json, STList_ITEM.class);
+        forwardRequestWithAttr(this.request, this.response, ItemDetail, "SearchResult", "Http://Placeholder");
+    }
     
 }

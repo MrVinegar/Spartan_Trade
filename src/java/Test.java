@@ -23,7 +23,7 @@ public class Test {
 //        postItem();
 //        getHmPagePreviewList();
 //        getSearchResults();
-        getItemDetail();
+//        getItemDetail();
 //        signUp();
 //        getUserItems();
     }
