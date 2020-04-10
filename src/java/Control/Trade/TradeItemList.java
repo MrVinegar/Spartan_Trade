@@ -55,6 +55,7 @@ public class TradeItemList extends ServletBased {
         String json = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.STSR_API + 
                 category + "?pageNo=" + page + "&pageSize=" + ITEM_PER_PAGE, null, "GET",null));
         STPagination SearchResult = jsonToObject(json, STPagination.class);
+        SearchResult.deserializeList(STList_SR.class);
         forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", "Http://Placeholder");
     }
 

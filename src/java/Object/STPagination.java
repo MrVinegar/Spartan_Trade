@@ -5,7 +5,10 @@
  */
 package Object;
 
+import static Helper.JSONprocessor.jsonToObject;
+import static Helper.JSONprocessor.objectToJson;
 import java.util.List;
+import org.json.JSONException;
 
 /**
  *
@@ -21,8 +24,10 @@ public class STPagination {
     private int size;
 
     private int currentPage;
-    
-    private List<Object> content ;
+
+    private List<Object> content;
+
+    private boolean isSerialized = false;
 
     public int getTotalElements() {
         return totalElements;
@@ -63,6 +68,28 @@ public class STPagination {
     public void setContent(List<Object> _content) {
         this.content = _content;
     }
-    
-    
+
+    public <T> void deserializeList(Class<T> _toType) {
+        if (isSerialized) {
+            throw new IllegalArgumentException("isSerialized can not be true");
+        }
+
+        for (Object o : content) {
+            o = jsonToObject((String) o, _toType);
+        }
+
+        this.isSerialized = true;
+    }
+
+    public void serializeList() throws JSONException {
+        if (isSerialized) {
+            throw new IllegalArgumentException("isSerialized can not be false");
+        }
+
+        for (Object o : content) {
+            o = objectToJson(o);
+        }
+
+        this.isSerialized = false;
+    }
 }
