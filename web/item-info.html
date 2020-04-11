@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <title>
+
+
+        Overview &middot;
+
+    </title>
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+
+    <link href="assets/css/toolkit-inverse.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <link href="assets/css/application.css" rel="stylesheet">
+    <link href="assets/css/W3schools-edited.css" rel="stylesheet">
+
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"> -->
+
+    <style>
+        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+        /* this chunk of css is not part of the toolkit :) */
+        .mySlides {
+            display: none;
+        }
+
+        body {
+            width: 1px;
+            min-width: 100%;
+            *width: 100%;
+        }
+
+        .image_list li {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 165px;
+            border: solid 5px #ffb71b;
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 15px;
+            -webkit-transition: all 200ms ease;
+            -moz-transition: all 200ms ease;
+            -ms-transition: all 200ms ease;
+            -o-transition: all 200ms ease;
+            transition: all 200ms ease;
+            overflow: hidden
+        }
+
+        .image_list li:last-child {
+            margin-bottom: 0
+        }
+
+        .image_list li:hover {
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3)
+        }
+
+        .image_list li img {
+            max-width: 100%
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 sidebar">
+                <nav class="sidebar-nav">
+                    <div class="sidebar-header">
+                        <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse"
+                            data-target="#nav-toggleable-md">
+                            <span class="sr-only">Toggle nav</span>
+                        </button>
+                        <a class="sidebar-brand img-responsive" href="index.html">
+                            <span class="icon sidebar-brand-icon"><img src="spartan_logo.png" alt=""></span>
+
+                        </a>
+                    </div>
+
+                    <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+                        <form class="sidebar-form">
+                            <input class="form-control" type="text" placeholder="Search...">
+                            <button type="submit" class="btn-link">
+                                <span class="icon icon-magnifying-glass"></span>
+                            </button>
+                        </form>
+
+
+                        <ul class="nav nav-pills nav-stacked flex-column">
+
+
+                            <li class="nav-header">User Account</liz>
+                            <li class="nav-item" id="js-popoverContent">
+                                <a class="nav-link" href="acc/docs/index.html">
+                                    Welcome!
+                                    <button class="btn btn-default navbar-btn navbar-btn-avatar ml-2"
+                                        data-toggle="popover">
+                                        <img class="rounded-circle" src="acc/docs/assets/img/avatar-dhg.png">
+                                    </button>
+                                </a>
+
+                            </li>
+                            <!-- <li class="nav-item">
+                    
+                </li> -->
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Main Menu</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Account Info</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <hr class="visible-xs mt-3">
+                            </li>
+
+
+
+                            <li class="nav-header">Categories</li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="icon-nav/index.html">
+                                    Category1
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="" target="blank">
+                                    Category2
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="">
+                                    Category3
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="" data-toggle="modal">
+                                    Category4
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </nav>
+            </div>
+            <div class="col-md-9 content">
+                <div class="dashhead">
+                    <div class="dashhead-titles">
+                        <!-- <h6 class="dashhead-subtitle">Dashboards</h6> -->
+                        <h2 class="dashhead-title" style="color: #ffb71b; font-weight: 500;">Account Information
+                        </h2>
+                    </div>
+
+                    <div class="btn-toolbar dashhead-toolbar">
+                        <div class="btn-toolbar-item input-with-icon">
+                            <input type="text" value="01/01/20 - 01/08/20" class="form-control"
+                                data-provide="datepicker">
+                            <span class="icon icon-calendar"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hr-divider mt-3">
+                    <h3 class="hr-divider-content hr-divider-heading"></h3>
+                </div>
+
+
+                <div class="row">
+                </div>
+
+
+
+
+                <div class="container">
+                    <div class="jumbotron" style="background-color: #0f2044;">
+
+                        <div class="w3-content w3-display-container">
+                            <img class="image-height mySlides w3-round-xxlarge w3-image"
+                                src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1565713229/single_4.jpg"
+                                style=" width:100%">
+                            <img class="mySlides w3-round-xxlarge w3-image"
+                                src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1565713228/single_2.jpg"
+                                style="width:100%">
+                            <img class="mySlides w3-round-xxlarge w3-image"
+                                src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1565713228/single_3.jpg"
+                                style="width:100%">
+                            <img class="mySlides w3-round-xxlarge w3-image"
+                                src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1565713228/single_2.jpg"
+                                style="width:100%">
+                            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                        </div>
+
+
+
+                        <div>
+                            <span class="badge-danger badge text-wrap lead float-right font-weight-bolder">$95</span>
+                            <h1 class="text-shadow mt-5 mb-3 text-primary ">Macbook Pro 2020</h1>
+                            <!-- <img src="like.svg"> -->
+                        </div>
+                        <p class="text-secondary font-weight-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro error
+                            maxime, quis reprehenderit recusandae sequi tempora earum veritatis odio enim pariatur
+                            provident voluptas unde voluptatem. Voluptas eos architecto repudiandae iste?</p>
+                        <hr class="my-4">
+                        <h3 class="mb-5 text-info">Item Specification</h3>
+
+
+                        <div class="row row-underline">
+                            <div class="col-md-6"> <a href="#" data-abc="true"> <span class="ml-auto view-all"></span>
+                                </a> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="col-md-12">
+                                    <tbody>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification ">Sales Package :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li class="font-weight-light">2 in 1 Laptop, Power Adaptor, Active Stylus Pen, User Guide,
+                                                        Warranty Documents</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Model Number :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li> 14-dh0107TU </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Part Number :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li>7AL87PA</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Color :</span> </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li>Black</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Suitable for :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li>Processing & Multitasking</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Processor Brand :</span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li>Intel</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <h3 class="mb-5 text-info">Seller Information</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="col-md-12">
+                                    <tbody>
+
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Prefered Contact Method:
+                                                </span> </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li><a href="">Call</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="row mt-10">
+                                            <td class="col-md-4"><span class="p_specification">Posted Data: </span>
+                                            </td>
+                                            <td class="col-md-8">
+                                                <ul>
+                                                    <li>March 29, 2020</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                        <button type="button" class="btn btn-lg btn-success" data-toggle="popover"
+                    title="How to buy?"
+                    data-content="Contact Seller at 336-000-0000">Intreseted in
+                    buying me?</button>
+                    </div>
+                    
+                </div>
+
+
+                <script src="assets/js/popper.min.js"></script>
+                <script src="assets/js/jquery.min.js"></script>
+                <script src="assets/js/tether.min.js"></script>
+                <script src="assets/js/chart.js"></script>
+                <script src="assets/js/tablesorter.min.js"></script>
+                <script src="assets/js/toolkit.js"></script>
+                <script src="assets/js/application.js"></script>
+                <script>
+                    $(document).ready(function(){
+  $('[data-toggle="popover"]').popover(); 
+});
+
+                    var slideIndex = 1;
+                    showDivs(slideIndex);
+
+                    function plusDivs(n) {
+                        showDivs(slideIndex += n);
+                    }
+
+                    function showDivs(n) {
+                        var i;
+                        var x = document.getElementsByClassName("mySlides");
+                        if (n > x.length) { slideIndex = 1 }
+                        if (n < 1) { slideIndex = x.length }
+                        for (i = 0; i < x.length; i++) {
+                            x[i].style.display = "none";
+                        }
+                        x[slideIndex - 1].style.display = "block";
+                    }
+
+                    // execute/clear BS loaders for docs
+                    $(function () { while (window.BS && window.BS.loader && window.BS.loader.length) { (window.BS.loader.pop())() } })
+                </script>
+</body>
+
+</html>
