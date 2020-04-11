@@ -24,10 +24,22 @@ public class TradeItemList extends ServletBased {
 
     private static final int ITEM_PER_PAGE = 12;
 
+    /**
+     * initialize the TradeItemList object.
+     *
+     * @param _request HttpServletRequest
+     * @param _response HttpServletResponse
+     */
     public TradeItemList(HttpServletRequest _request, HttpServletResponse _response) {
         super(_request, _response);
     }
 
+    /**
+     * Get 5 newest posts in each catagory, return the data in Ajax way.
+     *
+     * @throws IOException
+     * @throws JSONException
+     */
     public void getHmPagePreviewList() throws IOException, JSONException {
         String json = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.STPV_API, null, "GET", null), "Ajax");
         if (json == null) {
@@ -36,6 +48,12 @@ public class TradeItemList extends ServletBased {
         sendAjaxResponse(this.response, "Success", json);
     }
 
+    /**
+     * Get 12 items for pageNo=N, return a STPagination object.
+     *
+     * @throws IOException
+     * @throws ServletException
+     */
     public void getSearchResults() throws IOException, ServletException, JSONException {
         String category = this.request.getParameter("category");
         String page = this.request.getParameter("page");
@@ -50,6 +68,13 @@ public class TradeItemList extends ServletBased {
 
     }
 
+    /**
+     * Get detail infomation of one item base on its item_id, return a
+     * STList_ITEM object.
+     *
+     * @throws IOException
+     * @throws ServletException
+     */
     public void getItemDetail() throws IOException, ServletException {
         String itemid = this.request.getParameter("itemid");
         String json = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.ST_ITEM_DETAIL_API + itemid,
@@ -61,6 +86,12 @@ public class TradeItemList extends ServletBased {
         forwardRequestWithAttr(this.request, this.response, ItemDetail, "ItemDetail", Forwarding.TO_ITEM_DETAIL);
     }
 
+    /**
+     * Get all items for user:user_id, return a ArrayList of STList_SR object.
+     *
+     * @throws IOException
+     * @throws ServletException
+     */
     public void getUserItems() throws IOException, ServletException, JSONException {
         int userID = (int) ((Double) (((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"))).doubleValue();
         String json = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.USER_API + "/" + userID,

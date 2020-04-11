@@ -29,7 +29,13 @@ public class Account extends ServletBased {
     public Account(HttpServletRequest _request, HttpServletResponse _response) {
         super(_request, _response);
     }
-
+    
+    /**
+     * Sign up a account, returns result in Ajax way.
+     *
+     * @throws IOException
+     * @throws JSONException
+     */
     public void signUp() throws IOException, JSONException {
         Map json = new HashMap();
         json.put("email", this.request.getParameter("email"));
@@ -49,6 +55,12 @@ public class Account extends ServletBased {
         }
     }
 
+    /**
+     * User login, returns result in Ajax way.
+     *
+     * @throws IOException
+     * @throws JSONException
+     */
     public void signIn() throws IOException, JSONException {
         if (checkIsSignIn()) {
             sendAjaxResponse(this.response, "Error", "You can't have two accounts login at the same time.");
@@ -73,13 +85,21 @@ public class Account extends ServletBased {
             sendAjaxResponse(this.response, "Failed", "Oops, something went wrong.");
         }
     }
-
+    
+    /**
+     * logoff.
+     */
     public void logOff() throws IOException {
         this.request.getSession().removeAttribute("Authorization64");
         this.request.getSession().removeAttribute("CurrentUserInfo");
         this.response.sendRedirect("index.jsp");
     }
 
+    /**
+     * Check is there an user already signIn.
+     *
+     * @return a boolean value represents the login status.
+     */   
     public boolean checkIsSignIn() {
         if (this.request.getSession().getAttribute("Authorization64") == null) {
             return false;
@@ -92,6 +112,11 @@ public class Account extends ServletBased {
         return true;
     }
 
+    /**
+     * Check is the SignIn response valid.
+     *
+     * @return a boolean value represents signIn validation result.
+     */
     private boolean checkSignInResponse(Map _responseBody) {
         if (_responseBody.get("userId") == null) {
             return false;
