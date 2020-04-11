@@ -19,6 +19,7 @@ public class JSONprocessor {
             return null;
         
         Gson gson = new GsonBuilder().serializeNulls().create();
+        Object o = gson.fromJson(_jsonString, _object);
         return gson.fromJson(_jsonString, _object);
     }
 

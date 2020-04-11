@@ -79,7 +79,7 @@ public class STList_ITEM {
         return createdDate;
     }
 
-    public void setCreatedDate(String _createdDate){
+    public void setCreatedDate(String _createdDate) throws ParseException {
         this.createdDate = _createdDate;
     }
 
@@ -119,16 +119,16 @@ public class STList_ITEM {
         return updatedDate;
     }
 
-    public void setUpdatedDate(String _updatedDate) {
-        this.updatedDate = _updatedDate;
+    public void setUpdatedDate(String updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double _price) {
-        this.price = _price;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public List<String> getImages() {

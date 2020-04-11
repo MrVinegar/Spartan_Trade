@@ -1,7 +1,6 @@
 
-import Dict.API;
-import static Dict.API.ST_ITEM_DETAIL_API;
-import Dict.EmailServer;
+import Dict.Config.API;
+import Dict.Config.EmailServer;
 import Helper.EmailHandler;
 import static Helper.HttpHandler.getResponseContent;
 import static Helper.HttpHandler.sendHttpRequest;
@@ -25,14 +24,15 @@ public class Test {
 //        getSearchResults();
 //        getItemDetail();
 //        signUp();
-//        getUserItems();
+        getUserItems();
     }
 
     public static void postItem() throws InstantiationException, IllegalAccessException, JSONException, IOException {
         ItemPostedRequest Ipr = new ItemPostedRequest();
-        Ipr.setEmail("y_qiu2@uncg.edu");
+        Ipr.setEmail("hsbains@uncg.edu");
+        Ipr.setTitle("Newest item");
         System.out.println(objectToJson(Ipr));
-        String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + ST_ITEM_DETAIL_API, objectToJson(Ipr).toString(), "POST", null));
+        String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.ST_ITEM_DETAIL_API, objectToJson(Ipr).toString(), "POST", null));
         ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
         EmailHandler Eh = new EmailHandler(EmailServer.USERNAME, EmailServer.PASSWORD, EmailServer.TYPE_GMAIL);
         if (Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())) {
@@ -65,7 +65,7 @@ public class Test {
 
     public static void signUp() throws JSONException, IOException {
         Map json = new HashMap<String, String>();
-        json.put("email", "y_qiu2@uncg.edu");
+        json.put("email", "hsbains@uncg.edu");
         json.put("password", "testacc");
 
         String sendJson = objectToJson(json).toString();

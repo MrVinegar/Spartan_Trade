@@ -57,6 +57,9 @@ public class AccPort extends HttpServlet {
                 case "SignIn":
                     acc.signIn();
                     break;
+                case "Logoff":
+                    acc.logOff();
+                    break;
             }
         } catch (JSONException ex) {
             Logger.getLogger(AccPort.class.getName()).log(Level.SEVERE, null, ex);

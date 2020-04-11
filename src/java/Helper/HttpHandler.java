@@ -5,7 +5,10 @@
  */
 package Helper;
 
+import Control.ServletBased;
+import Dict.Config.Forwarding;
 import static Dict.TypeIdentifier.*;
+import static Helper.JSONprocessor.jsonToObject;
 import static Helper.JSONprocessor.objectToJson;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -15,6 +18,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +45,9 @@ public class HttpHandler {
         T ret = _object.newInstance();
         Field[] field = _object.getDeclaredFields();
         for (Field f : field) {
-            f.set(ret, castHelper(f.getClass(), _request.getParameter(f.getName())));
+            f.setAccessible(true);
+            System.out.println(f.getType());
+            f.set(ret, castHelper(f.getType(), _request.getParameter(f.getName())));
         }
         return ret;
     }
@@ -63,7 +70,7 @@ public class HttpHandler {
         }
     }
 
-    public static HttpResponse sendHttpRequest(String _URL, String _Json, String _method, Map _headers) throws UnsupportedEncodingException, IOException{
+    public static HttpResponse sendHttpRequest(String _URL, String _Json, String _method, Map _headers) throws UnsupportedEncodingException, IOException {
         //Pre-set Variables
         StringEntity httpEntity = new StringEntity((_Json == null) ? "" : _Json);
         httpEntity.setContentType("application/json");
@@ -74,16 +81,16 @@ public class HttpHandler {
             case "POST":
                 HttpPost postRequest = buildHttpPost(_URL, httpEntity, _headers);
                 postRequest.setEntity(httpEntity);
-                response = Request(HttpPost.class,postRequest);
+                response = Request(HttpPost.class, postRequest);
                 break;
             case "PUT":
                 HttpPut putRequest = buildHttpPut(_URL, httpEntity, _headers);
                 putRequest.setEntity(httpEntity);
-                response = Request(HttpPut.class,putRequest);
+                response = Request(HttpPut.class, putRequest);
                 break;
             case "GET":
                 HttpGet getRequest = buildHttpGet(_URL, _headers);
-                response = Request(HttpGet.class,getRequest);
+                response = Request(HttpGet.class, getRequest);
                 break;
         }
         return response;
@@ -92,7 +99,7 @@ public class HttpHandler {
     public static void sendAjaxResponse(HttpServletResponse _response, String _status, String _text) throws IOException, JSONException {
         _response.setContentType("text/plain");
         _response.setCharacterEncoding("UTF-8");
-        Map<String,String> ret = new HashMap();
+        Map<String, String> ret = new HashMap();
         ret.put("status", _status);
         ret.put("content", _text);
         _response.getWriter().write(objectToJson(ret).toString());
@@ -102,6 +109,30 @@ public class HttpHandler {
         _request.setAttribute(_attrname, _objects);
         RequestDispatcher requestDispatcher = _request.getRequestDispatcher(_to);
         requestDispatcher.forward(_request, _response);
+    }
+
+    public static String getCheckedResponse(ServletBased _resPair, HttpResponse _res, String _method) {
+        try {
+            if (_res.getStatusLine().getStatusCode() != 200) {
+                Map error = jsonToObject(EntityUtils.toString(_res.getEntity()),HashMap.class);
+                switch (_method) {
+                    case "Ajax":
+                        sendAjaxResponse(_resPair.response, "Error", (String)error.get("message"));
+                        break;
+                    case "HttpServlet":
+                        forwardRequestWithAttr(_resPair.request,_resPair.response,error,"Error",Forwarding.TO_ERROR);
+                        break;
+                    default:
+                        throw new RuntimeException("Unknown method");
+                }
+            }else{
+                return EntityUtils.toString(_res.getEntity());
+            }
+
+        } catch (JSONException | IOException | ServletException ex) {
+            Logger.getLogger(HttpHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     private static HttpPost buildHttpPost(String _URL, StringEntity _httpEntity, Map _headerMaps) {
@@ -116,7 +147,7 @@ public class HttpHandler {
         }
         return postRequest;
     }
-    
+
     private static HttpPut buildHttpPut(String _URL, StringEntity _httpEntity, Map _headerMaps) {
         HttpPut putRequest = new HttpPut(_URL);
         putRequest.setEntity(_httpEntity);
@@ -157,17 +188,7 @@ public class HttpHandler {
     }
 
     public static String getResponseContent(HttpResponse _response) throws IOException {
-        responseCheck(_response);
-        //Returning Response
         return EntityUtils.toString(_response.getEntity());
-    }
-
-    private static void responseCheck(HttpResponse _response) {
-        //Handling Response
-        if (_response.getStatusLine().getStatusCode() != 200) {
-            throw new RuntimeException("Failed Request: error code - "
-                    + _response.getStatusLine().getStatusCode());
-        }
     }
 
     private static Object castHelper(Class _attrType, String _from) {

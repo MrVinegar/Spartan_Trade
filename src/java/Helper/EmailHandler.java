@@ -24,7 +24,7 @@ public class EmailHandler {
         
         SetProps(_server);
         
-        this.mailSession = Session.getDefaultInstance(this.props, new javax.mail.Authenticator() {
+        this.mailSession = Session.getInstance(this.props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(_username, _password);
             }

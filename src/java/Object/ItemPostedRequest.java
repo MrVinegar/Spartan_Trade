@@ -25,14 +25,9 @@ public class ItemPostedRequest {
     private String email;
 
     private double price;
-
+    
     public ItemPostedRequest() {
-        this.title = "null";
-        this.description = "null";
-        this.phone = "null";
-        this.contactMethod = "null";
-        this.categoryId = 1;
-        this.email = "null";
+    
     }
 
 
@@ -89,7 +84,7 @@ public class ItemPostedRequest {
         this.price = _price;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return this.price;
     }
 }

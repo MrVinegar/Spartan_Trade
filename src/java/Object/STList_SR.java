@@ -18,7 +18,7 @@ import java.util.Date;
 public class STList_SR {
     public int itemId;
     public int imageCount;
-    public Date updatedDate;
+    public String updatedDate;
     public String title;
 
     public STList_SR() {
@@ -40,12 +40,12 @@ public class STList_SR {
         this.imageCount = _imageCount;
     }
 
-    public Date getUpdatedDate() {
+    public String getUpdatedDate() {
         return updatedDate;
     }
 
     public void setUpdatedDate(String _updatedDate) throws ParseException {
-        this.updatedDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parse(_updatedDate);  
+        this.updatedDate = _updatedDate;  
     }
 
     public String getTitle() {

@@ -5,12 +5,13 @@
         <group>
             <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Helper/HttpHandler.java</file>
             <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Control/Trade/TradeItemList.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Control/AccPort.java</file>
+            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Object/STPagination.java</file>
             <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Control/Trade/TradeAction.java</file>
             <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Control/Trade/Trade.java</file>
+            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Dict/TypeIdentifier.java</file>
             <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Control/TradePort.java</file>
             <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Control/Account/Account.java</file>
-            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Control/TradeInfo.java</file>
+            <file>file:/C:/Users/Administrator/Documents/NetBeansProjects/Spartan%20trade/src/java/Dict/Config.java</file>
         </group>
     </open-files>
 </project-private>

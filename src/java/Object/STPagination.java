@@ -7,6 +7,8 @@ package Object;
 
 import static Helper.JSONprocessor.jsonToObject;
 import static Helper.JSONprocessor.objectToJson;
+import com.google.gson.internal.LinkedTreeMap;
+import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONException;
 
@@ -69,13 +71,14 @@ public class STPagination {
         this.content = _content;
     }
 
-    public <T> void deserializeList(Class<T> _toType) {
+    public <T> void deserializeList(Class<T> _toType) throws JSONException {
         if (isSerialized) {
             throw new IllegalArgumentException("isSerialized can not be true");
         }
 
-        for (Object o : content) {
-            o = jsonToObject((String) o, _toType);
+        for (int i = 0; i < this.content.size(); i++) {
+            String jsonString = objectToJson(this.content.get(i)).toString();
+            this.content.set(i, jsonToObject(jsonString, _toType));
         }
 
         this.isSerialized = true;
@@ -86,7 +89,7 @@ public class STPagination {
             throw new IllegalArgumentException("isSerialized can not be false");
         }
 
-        for (Object o : content) {
+        for (Object o : content) {          
             o = objectToJson(o);
         }
 

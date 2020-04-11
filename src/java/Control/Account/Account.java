@@ -1,9 +1,10 @@
 package Control.Account;
 
 import Control.ServletBased;
-import Dict.API;
-import Dict.EmailServer;
+import Dict.Config.API;
+import Dict.Config.EmailServer;
 import Helper.EmailHandler;
+import static Helper.HttpHandler.getCheckedResponse;
 import static Helper.HttpHandler.getResponseContent;
 import static Helper.HttpHandler.sendAjaxResponse;
 import static Helper.HttpHandler.sendHttpRequest;
@@ -25,43 +26,29 @@ import org.json.JSONException;
  */
 public class Account extends ServletBased {
 
-    /**
-     * initialize the Account object.
-     *
-     * @param _request
-     * @param _response
-     */
     public Account(HttpServletRequest _request, HttpServletResponse _response) {
         super(_request, _response);
     }
 
-    /**
-     * Sign up a account, returns result in Ajax way.
-     *
-     * @throws IOException
-     * @throws JSONException
-     */
     public void signUp() throws IOException, JSONException {
         Map json = new HashMap();
         json.put("email", this.request.getParameter("email"));
         json.put("password", this.request.getParameter("password"));
         String sendJson = objectToJson(json).toString();
-        String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.REGISTER_API, sendJson, "POST", null));
+        String jsonResponse = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.REGISTER_API, sendJson, "POST", null), "Ajax");
+        if (jsonResponse == null) {
+            return;
+        }
+
         ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
         EmailHandler Eh = new EmailHandler(EmailServer.USERNAME, EmailServer.PASSWORD, EmailServer.TYPE_GMAIL);
         if (Eh.sendMail(vkey.getEmail(), "Email Validation", vkey.getValidationUrl())) {
-            sendAjaxResponse(this.response, "Redirect", "{placeholder}");
+            sendAjaxResponse(this.response, "Redirect", request.getContextPath() + "/AccountCreated.html");
         } else {
-            sendAjaxResponse(this.response, "Failed", "Oops, something went wrong.");
+            sendAjaxResponse(this.response, "Error", "Oops, something went wrong.");
         }
     }
 
-    /**
-     * User login, returns result in Ajax way.
-     *
-     * @throws IOException
-     * @throws JSONException
-     */
     public void signIn() throws IOException, JSONException {
         if (checkIsSignIn()) {
             sendAjaxResponse(this.response, "Error", "You can't have two accounts login at the same time.");
@@ -73,32 +60,26 @@ public class Account extends ServletBased {
         );
         Map headerMap = new HashMap();
         headerMap.put("Authorization", "Basic " + ecode);
-
-        String jsonResponse = getResponseContent(sendHttpRequest(API.API_DOMAIN + API.LOGIN_API, null, "POST", headerMap));
+        String jsonResponse = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.LOGIN_API, null, "POST", headerMap), "Ajax");
+        if (jsonResponse == null) {
+            return;
+        }        
         Map responseBody = jsonToObject(jsonResponse, Map.class);
-
         if (checkSignInResponse(responseBody)) {
             this.request.getSession().setAttribute("Authorization64", headerMap);
             this.request.getSession().setAttribute("CurrentUserInfo", responseBody);
-            sendAjaxResponse(this.response, "Redirect", "{placeholder}");
+            sendAjaxResponse(this.response, "Redirect", request.getContextPath() + "/Search?code=URSR");
         } else {
             sendAjaxResponse(this.response, "Failed", "Oops, something went wrong.");
         }
     }
 
-    /**
-     * logoff.
-     */
-    public void logOff() {
+    public void logOff() throws IOException {
         this.request.getSession().removeAttribute("Authorization64");
         this.request.getSession().removeAttribute("CurrentUserInfo");
+        this.response.sendRedirect("index.jsp");
     }
 
-    /**
-     * Check is there an user already signIn.
-     *
-     * @return a boolean value represents the login status.
-     */
     public boolean checkIsSignIn() {
         if (this.request.getSession().getAttribute("Authorization64") == null) {
             return false;
@@ -111,11 +92,6 @@ public class Account extends ServletBased {
         return true;
     }
 
-    /**
-     * Check is the SignIn response valid.
-     *
-     * @return a boolean value represents signIn validation result.
-     */
     private boolean checkSignInResponse(Map _responseBody) {
         if (_responseBody.get("userId") == null) {
             return false;

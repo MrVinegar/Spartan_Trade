@@ -20,7 +20,7 @@ import org.json.JSONException;
  *
  * @author Yi Qiu
  */
-@WebServlet(urlPatterns = {"/Search"})
+@WebServlet(name = "Search", urlPatterns = {"/Search"})
 public class TradeInfo extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -65,6 +65,12 @@ public class TradeInfo extends HttpServlet {
                     break;
                 case "STitem":
                     trade.getItemDetail();
+                    break;
+                case "URSR":
+                    trade.getUserItems();
+                    break;
+                case "URitem":
+                    trade.getTargetUserItem();
                     break;
             }
         } catch (JSONException ex) {
