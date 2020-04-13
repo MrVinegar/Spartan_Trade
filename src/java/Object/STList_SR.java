@@ -7,8 +7,7 @@
 package Object;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,36 +15,38 @@ import java.util.Date;
  * @author Yi Qiu
  */
 public class STList_SR {
-    public int itemId;
-    public int imageCount;
-    public String updatedDate;
-    public String title;
+    private Integer itemId;
+    private String description;
+    private String updatedDate;
+    private String title;
+    private List<String> imageFiles;
+    
 
     public STList_SR() {
     }
 
-    public int getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(int _itemId) {
+    public void setItemId(Integer _itemId) {
         this.itemId = _itemId;
     }
 
-    public int getImageCount() {
-        return imageCount;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImageCount(int _imageCount) {
-        this.imageCount = _imageCount;
+    public void setDescription(String _description) {
+        this.description = _description;
     }
 
     public String getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(String _updatedDate) throws ParseException {
-        this.updatedDate = _updatedDate;  
+    public void setUpdatedDate(String _updatedDate) {
+        this.updatedDate = _updatedDate;
     }
 
     public String getTitle() {
@@ -55,6 +56,16 @@ public class STList_SR {
     public void setTitle(String _title) {
         this.title = _title;
     }
+
+    public List<String> getImageFiles() {
+        return imageFiles;
+    }
+
+    public void setImageFiles(List<String> _imageFiles) {
+        this.imageFiles = _imageFiles;
+    }
+
+
     
     
 }

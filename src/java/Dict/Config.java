@@ -12,30 +12,43 @@ package Dict;
  */
 public class Config {
 
-    public class API {
+    public enum ServerENUM {
+        API_DOMAIN("http://ec2-3-93-23-132.compute-1.amazonaws.com:8080", 0),
+        ITEM_API("/items/", 1),
+        USER_API("/users/", 2),
+        LOGIN_API("/login", 3),
+        REGISTER_API("/register", 4),
+        EMAIL_USERNAME("SpartanTrade2020",101),
+        EMAIL_PASSWORD("SpartanTrade2020A",102),
+        EMAIL_TYPE_GMAIL("Gmail",103),
+        PAGE_INDEX("Home.jsp",200),
+        PAGE_ERROR("Error.jsp",201),
+        PAGE_SEARCH_RESULT("SearchResult.jsp",202),
+        PAGE_ITEM_INFO("ItemInfo.jsp",203),
+        PAGE_ACCOUNT("Account.jsp",204),
+        PAGE_MISSING("PageNotFound.jsp",205);
+        
+        private String name;
+        private int index;
 
-        public final static String API_DOMAIN = "http://ec2-3-93-23-132.compute-1.amazonaws.com:8080/";
-        public final static String STPV_API = "items/top5";
-        public final static String STSR_API = "items/category/";
-        public final static String ST_ITEM_DETAIL_API = "items/";
-        public final static String USER_API = "users";
-        public final static String REGISTER_API = "register";
-        public final static String LOGIN_API = "login";
-    }
+        private ServerENUM(String name, int index) {
+            this.name = name;
+            this.index = index;
+        }
 
-    public class EmailServer {
+        public static String getContent(int index) {
+            for (ServerENUM e : ServerENUM.values()) {
+                if (e.getIndex() == index) {
+                    return e.name;
+                }
+            }
+            return null;
+        }
+        
+        private int getIndex(){
+            return index;
+        }
 
-        public final static String USERNAME = "SpartanTrade2020";
-        public final static String PASSWORD = "SpartanTrade2020A";
-        public final static String TYPE_GMAIL = "Gmail";
-    }
-    
-    public class Forwarding{
-        public final static String TO_ERROR = "placeholder";
-        public final static String TO_SEARCH_RESULT = "CategoryPage.jsp";
-        public final static String TO_ITEM_DETAIL = "FullDescription.jsp";
-        public final static String TO_USER_ITEMLIST = "order-history.jsp";
-        public final static String TO_USER_ITEM_DETAIL = "placeholder";
     }
 
 }

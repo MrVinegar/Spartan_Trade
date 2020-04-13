@@ -6,10 +6,10 @@ package Object;
  * @author Yi Qiu
  */
 public class STList_PV {
-    private String catetoryId = "-1";
-    private String itemId = "-1";
-    private String title = "null";
-    private String rowNumber = "-1";
+    private String catetoryId;
+    private String itemId;
+    private String title;
+    private String rowNumber;
 
     public STList_PV(){
         

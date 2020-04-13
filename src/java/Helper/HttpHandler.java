@@ -6,7 +6,8 @@
 package Helper;
 
 import Control.ServletBased;
-import Dict.Config.Forwarding;
+import Dict.Config;
+import Dict.Config.ServerENUM;
 import static Dict.TypeIdentifier.*;
 import static Helper.JSONprocessor.jsonToObject;
 import static Helper.JSONprocessor.objectToJson;
@@ -111,16 +112,16 @@ public class HttpHandler {
         requestDispatcher.forward(_request, _response);
     }
 
-    public static String getCheckedResponse(ServletBased _resPair, HttpResponse _res, String _method) {
+    public static String getCheckedResponse(ServletBased _resPair, HttpResponse _res, String _method) throws ServletException {
         try {
             if (_res.getStatusLine().getStatusCode() != 200) {
                 Map error = jsonToObject(EntityUtils.toString(_res.getEntity()),HashMap.class);
                 switch (_method) {
                     case "Ajax":
-                        sendAjaxResponse(_resPair.response, "Error", (String)error.get("message"));
+                        sendAjaxResponse(_resPair.getResponse(), "Error", (String)error.get("message"));
                         break;
                     case "HttpServlet":
-                        forwardRequestWithAttr(_resPair.request,_resPair.response,error,"Error",Forwarding.TO_ERROR);
+                        forwardRequestWithAttr(_resPair.getRequest(),_resPair.getResponse(),error,"Error", ServerENUM.getContent(200));
                         break;
                     default:
                         throw new RuntimeException("Unknown method");
@@ -129,7 +130,7 @@ public class HttpHandler {
                 return EntityUtils.toString(_res.getEntity());
             }
 
-        } catch (JSONException | IOException | ServletException ex) {
+        } catch (JSONException | IOException ex) {
             Logger.getLogger(HttpHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

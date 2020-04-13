@@ -15,11 +15,22 @@ import javax.servlet.http.HttpServletResponse;
  * @author Yi Qiu
  */
 public class ServletBased {
-    public HttpServletRequest request;
-    public HttpServletResponse response;
+    protected HttpServletRequest request;
+    protected HttpServletResponse response;
+    protected Integer Forward = 205;//Page Not Found
 
     public ServletBased(HttpServletRequest _request, HttpServletResponse _response) {
         this.request = _request;
         this.response = _response;
     }  
+
+    public HttpServletRequest getRequest() {
+        return request;
+    }
+
+    public HttpServletResponse getResponse() {
+        return response;
+    }
+    
+    
 }

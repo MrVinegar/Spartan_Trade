@@ -2,16 +2,17 @@ package Control.Trade;
 
 import Control.Account.Account;
 import Control.ServletBased;
-import Dict.Config.API;
-import Dict.Config.EmailServer;
+import Dict.Config.ServerENUM;
 import Helper.EmailHandler;
 import static Helper.HttpHandler.*;
 import static Helper.JSONprocessor.*;
 import Object.ItemPostedRequest;
+import Object.STList_ITEM;
 import Object.ValidationKey;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
@@ -41,15 +42,16 @@ public class TradeAction extends ServletBased {
      * @throws JSONException
      * @throws IOException
      */
-    public void postItemDefault() throws InstantiationException, IllegalAccessException, JSONException, IOException {
+    public void postItemDefault() throws InstantiationException, IllegalAccessException, JSONException, IOException, ServletException {
         ItemPostedRequest Ipr = loadFromHttpRequest(this.request, ItemPostedRequest.class);
         String sendJson = objectToJson(Ipr).toString();
-        String jsonResponse = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.ST_ITEM_DETAIL_API, sendJson, "POST", null), "Ajax");
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(1);
+        String jsonResponse = getCheckedResponse(this, sendHttpRequest(url, sendJson, "POST", null), "Ajax");
         if (jsonResponse == null) {
             return;
         }
         ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
-        EmailHandler Eh = new EmailHandler(EmailServer.USERNAME, EmailServer.PASSWORD, EmailServer.TYPE_GMAIL);
+        EmailHandler Eh = new EmailHandler(ServerENUM.getContent(101), ServerENUM.getContent(102), ServerENUM.getContent(103));
         if (Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())) {
             String code = getCode();
             this.request.getSession().setAttribute(code, Integer.toString(vkey.getEntityId()));
@@ -67,13 +69,13 @@ public class TradeAction extends ServletBased {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public void postItemByUser() throws JSONException, IOException, InstantiationException, IllegalAccessException {
+    public void postItemByUser() throws JSONException, IOException, InstantiationException, IllegalAccessException, ServletException {
         if (new Account(this.request, this.response).checkIsSignIn()) {
             ItemPostedRequest Ipr = loadFromHttpRequest(this.request, ItemPostedRequest.class);
             int userID = (int) ((Double) (((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"))).doubleValue();
             String sendJson = objectToJson(Ipr).toString();
-            String jsonResponse = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.USER_API + "/" + userID + "/items",
-                    sendJson, "POST", (Map) this.request.getSession().getAttribute("Authorization64")), "Ajax");
+            String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID + ServerENUM.getContent(1);
+            String jsonResponse = getCheckedResponse(this, sendHttpRequest(url, sendJson, "POST", (Map) this.request.getSession().getAttribute("Authorization64")), "Ajax");
             if (jsonResponse == null) {
                 return;
             }
@@ -94,17 +96,18 @@ public class TradeAction extends ServletBased {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public void updateItemByUser() throws IOException, JSONException, InstantiationException, IllegalAccessException {
+    public void updateItemByUser() throws IOException, JSONException, InstantiationException, IllegalAccessException, ServletException {
         if (new Account(this.request, this.response).checkIsSignIn()) {
-            ItemPostedRequest Ipr = loadFromHttpRequest(this.request, ItemPostedRequest.class);
+            STList_ITEM STI = loadFromHttpRequest(this.request, STList_ITEM.class);
             int userID = Integer.parseInt((String) ((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"));
-            int itemID = Integer.parseInt(this.request.getParameter("itemID"));
-            String sendJson = objectToJson(Ipr).toString();
-            String jsonResponse = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.USER_API + "/" + userID + "/items/" + itemID,
-                    sendJson, "PUT", (Map) this.request.getSession().getAttribute("Authorization64")), "Ajax");
+            int itemID = Integer.parseInt(this.request.getParameter("itemId"));
+            String sendJson = objectToJson(STI).toString();
+            String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID + ServerENUM.getContent(1) + itemID;
+            String jsonResponse = getCheckedResponse(this, sendHttpRequest(url, sendJson, "PUT", (Map) this.request.getSession().getAttribute("Authorization64")), "Ajax");
             if (jsonResponse == null) {
                 return;
             }
+            sendAjaxResponse(this.response, "Success", "");
         } else {
             sendAjaxResponse(this.response, "Error", "Try login first.");
         }

@@ -1,11 +1,9 @@
 package Control.Account;
 
 import Control.ServletBased;
-import Dict.Config.API;
-import Dict.Config.EmailServer;
+import Dict.Config.ServerENUM;
 import Helper.EmailHandler;
 import static Helper.HttpHandler.getCheckedResponse;
-import static Helper.HttpHandler.getResponseContent;
 import static Helper.HttpHandler.sendAjaxResponse;
 import static Helper.HttpHandler.sendHttpRequest;
 import static Helper.JSONprocessor.jsonToObject;
@@ -15,6 +13,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
@@ -36,18 +35,19 @@ public class Account extends ServletBased {
      * @throws IOException
      * @throws JSONException
      */
-    public void signUp() throws IOException, JSONException {
+    public void signUp() throws IOException, JSONException, ServletException {
         Map json = new HashMap();
         json.put("email", this.request.getParameter("email"));
         json.put("password", this.request.getParameter("password"));
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(4);
         String sendJson = objectToJson(json).toString();
-        String jsonResponse = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.REGISTER_API, sendJson, "POST", null), "Ajax");
+        String jsonResponse = getCheckedResponse(this, sendHttpRequest(url, sendJson, "POST", null), "Ajax");
         if (jsonResponse == null) {
             return;
         }
 
         ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
-        EmailHandler Eh = new EmailHandler(EmailServer.USERNAME, EmailServer.PASSWORD, EmailServer.TYPE_GMAIL);
+        EmailHandler Eh = new EmailHandler(ServerENUM.getContent(101), ServerENUM.getContent(102), ServerENUM.getContent(103));
         if (Eh.sendMail(vkey.getEmail(), "Email Validation", vkey.getValidationUrl())) {
             sendAjaxResponse(this.response, "Redirect", request.getContextPath() + "/AccountCreated.html");
         } else {
@@ -61,7 +61,7 @@ public class Account extends ServletBased {
      * @throws IOException
      * @throws JSONException
      */
-    public void signIn() throws IOException, JSONException {
+    public void signIn() throws IOException, JSONException, ServletException {
         if (checkIsSignIn()) {
             sendAjaxResponse(this.response, "Error", "You can't have two accounts login at the same time.");
             return;
@@ -72,7 +72,8 @@ public class Account extends ServletBased {
         );
         Map headerMap = new HashMap();
         headerMap.put("Authorization", "Basic " + ecode);
-        String jsonResponse = getCheckedResponse(this, sendHttpRequest(API.API_DOMAIN + API.LOGIN_API, null, "POST", headerMap), "Ajax");
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(3);
+        String jsonResponse = getCheckedResponse(this, sendHttpRequest(url, null, "POST", headerMap), "Ajax");
         if (jsonResponse == null) {
             return;
         }        
