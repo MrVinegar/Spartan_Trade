@@ -99,7 +99,7 @@ public class TradeAction extends ServletBased {
     public void updateItemByUser() throws IOException, JSONException, InstantiationException, IllegalAccessException, ServletException {
         if (new Account(this.request, this.response).checkIsSignIn()) {
             STList_ITEM STI = loadFromHttpRequest(this.request, STList_ITEM.class);
-            int userID = Integer.parseInt((String) ((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"));
+            int userID = (int) ((Double) (((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"))).doubleValue();
             int itemID = Integer.parseInt(this.request.getParameter("itemId"));
             String sendJson = objectToJson(STI).toString();
             String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID + ServerENUM.getContent(1) + itemID;
