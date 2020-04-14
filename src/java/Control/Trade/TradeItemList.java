@@ -58,7 +58,7 @@ public class TradeItemList extends ServletBased {
         String category = this.request.getParameter("category");
         String page = this.request.getParameter("page");
         String To = this.request.getParameter("To");
-        this.Forward = (To != null)?Integer.parseInt(To):200;
+        
         String url = ServerENUM.getContent(0) + ServerENUM.getContent(1) + "category/" + category + "?pageNo=" + page + "&pageSize=" + ITEM_PER_PAGE;
         String json = getCheckedResponse(this, sendHttpRequest(url, null, "GET", null), "HttpServlet");
         if (json == null) {
@@ -66,6 +66,7 @@ public class TradeItemList extends ServletBased {
         }
         STPagination SearchResult = jsonToObject(json, STPagination.class);
         SearchResult.deserializeList(STList_SR.class);
+        this.Forward = (To != null)?Integer.parseInt(To):205;
         forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", ServerENUM.getContent(this.Forward));
 
     }
@@ -80,13 +81,13 @@ public class TradeItemList extends ServletBased {
     public void getItemDetail() throws IOException, ServletException {
         String itemid = this.request.getParameter("itemid");
         String To = this.request.getParameter("To");
-        this.Forward = (To != null)?Integer.parseInt(To):200;
         String url = ServerENUM.getContent(0) + ServerENUM.getContent(1) + itemid;
         String json = getCheckedResponse(this, sendHttpRequest(url, null, "GET", null), "HttpServlet");
         if (json == null) {
             return;
         }
         STList_ITEM ItemDetail = jsonToObject(json, STList_ITEM.class);
+        this.Forward = (To != null)?Integer.parseInt(To):205;
         forwardRequestWithAttr(this.request, this.response, ItemDetail, "ItemDetail", ServerENUM.getContent(this.Forward));
     }
 
@@ -98,15 +99,16 @@ public class TradeItemList extends ServletBased {
      */
     public void getUserItems() throws IOException, ServletException, JSONException {
         int userID = (int) ((Double) (((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"))).doubleValue();
+        String page = this.request.getParameter("page");
         String To = this.request.getParameter("To");
-        this.Forward = (To != null)?Integer.parseInt(To):200;
-        String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID;
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID + "?PageNo=" + page + "&pageSize=" + ITEM_PER_PAGE;
         String json = getCheckedResponse(this, sendHttpRequest(url, null, "GET", (Map) this.request.getSession().getAttribute("Authorization64")), "HttpServlet");
         if (json == null) {
             return;
         }
         STPagination SearchResult = jsonToObject(json, STPagination.class);
         SearchResult.deserializeList(STList_ITEM.class);
+        this.Forward = (To != null)?Integer.parseInt(To):205;
         forwardRequestWithAttr(this.request, this.response, SearchResult, "SearchResult", ServerENUM.getContent(this.Forward));
     }
 
@@ -118,16 +120,24 @@ public class TradeItemList extends ServletBased {
      * @throws ServletException
      */
     public void getTargetUserItem() throws IOException, ServletException {
-        String userid = this.request.getParameter("userid");
+        int userID = (int) ((Double) (((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"))).doubleValue();
         int itemID = Integer.parseInt(this.request.getParameter("itemID"));
         String To = this.request.getParameter("To");
-        this.Forward = (To != null)?Integer.parseInt(To):200;
-        String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userid + ServerENUM.getContent(1) + itemID;
+
+        if(To == null){
+            String method = "Ajax";
+            String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID + ServerENUM.getContent(1) + itemID;
+            String json = getCheckedResponse(this, sendHttpRequest(url, null, "GET", (Map) this.request.getSession().getAttribute("Authorization64")), "HttpServlet");
+        }
+        
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID + ServerENUM.getContent(1) + itemID;
         String json = getCheckedResponse(this, sendHttpRequest(url, null, "GET", (Map) this.request.getSession().getAttribute("Authorization64")), "HttpServlet");
         if (json == null) {
             return;
         }
+        
         STList_ITEM ItemDetail = jsonToObject(json, STList_ITEM.class);
+        this.Forward = (To != null)?Integer.parseInt(To):205;
         forwardRequestWithAttr(this.request, this.response, ItemDetail, "SearchResult", ServerENUM.getContent(this.Forward));
     }
 }
