@@ -268,16 +268,12 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: 'Baloo Paaji 2', cursive;
-  /* font-family: 'Monoton', cursive; */
-  /* font-family: 'Leckerli One', cursive; */
-  font-family: "Lucida Console", Monaco, monospace; 
-  font-size: 20px ;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 1.2rem ;
   font-weight: 300;
   line-height: 1.5;
   color: #cfd2da;
-  background-color: #0f1f43; 
-}
+  background-color: #0f1f43; }
 
 [tabindex="-1"]:focus {
   outline: none !important; }
@@ -638,7 +634,7 @@ pre {
       max-width: 100%; } }
   @media (min-width: 1200px) {
     .container {
-      width: 80%;
+      width: 1250px;
       max-width: 100%; } }
 
 .container-fluid {
@@ -6988,17 +6984,17 @@ textarea {
   border-spacing: 5px; }
 
 .nav > .nav-header {
-  /* padding-left: 5px; */
+  padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 5px;
-  font-size: 100%;
+  font-size: 85%;
   font-weight: normal;
   letter-spacing: 1px;
-  color: #ffb71b;
+  color: #51586a;
   text-transform: uppercase; }
 
 .nav > li + .nav-header {
-  margin-top: 10px; }
+  margin-top: 20px; }
 
 .nav-bordered > .nav-item {
   float: left; }
@@ -9284,8 +9280,6 @@ canvas {
     float: left; } }
 
 .dashhead-title {
-  font-size: 40px;
-  font-family: 'Lexend Giga', sans-serif !important;
   margin-top: 0; }
 
 .dashhead-subtitle {

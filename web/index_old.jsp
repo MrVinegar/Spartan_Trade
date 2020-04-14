@@ -43,7 +43,7 @@
 
 
         <%@page import="Object.STList_ITEM"%>
-        <%@page import="static Dict.API.API_DOMAIN"%>
+        <%--<%@page import="static Dict.API.API_DOMAIN"%>--%>
         <style>
             /* note: this is a hack for ios iframe for bootstrap themes shopify page */
             /* this chunk of css is not part of the toolkit :) */
@@ -52,13 +52,13 @@
                 min-width: 100%;
                 *width: 100%;
             }
-
+/*
             .modal-header { 
                            border-bottom: 0 none; 
             }        
             .modal-footer { 
                            border-top: 0 none; 
-            } 
+            } */
         </style>
     </head>
 

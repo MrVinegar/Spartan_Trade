@@ -1,0 +1,86 @@
+<!--<div class ="modal fade" id="login-modal-test" class="modal fade" role="dialog" style=" background-color: rgba(0,0,0,.5);">
+    <div class="modal-dialog modal-lg modal-md" >-->
+        <!--<div class="modal-content">-->
+        <script>
+            console.log("indside test");
+        </script>
+            <div class="modal-header">
+                <p>head</p>
+                <a class="close" data-dismiss="modal">X</a>
+                <span class="icon sidebar-brand-icon"><img src="assets/img/spartan_logo.png" alt=""></span>
+            </div>
+            <div class="modal-body">
+                 <p>Login form</p>
+<!--                <form action="Acc" method="post" id="loginForm" name="login" role="form"  onclick="validation();">
+                    <input type="hidden" name="code" value="SignIn">
+                    <div class="modal-body font-weight-bold ">				
+                    <h3 class="text-monospace text-primary modal-title display-4 mb-3">Login</h3>
+
+                    <div class="form-group">
+                        <label  class="text-muted" for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               placeholder="Enter UNCG email address" pattern="[a-z0-9._%+-]+@uncg.edu$" required>
+                        <p id="validationResult"></p>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="text-muted" for="Password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" 
+                               placeholder="Enter password" required>
+                    </div>
+                    <footer class="screen-login">
+                        <a href="#" class="" id="toggle-pwd">Forgot password</a>
+                    </footer>
+                    </div> -->
+            </div>
+            <div class="modal-footer">
+                <p>foot</p>
+                <button type="button" class="btn btn-default" id="toggle-login" onclick="reset()">Sign Up</button>
+                <input type="submit" class="btn btn-success" id="submitLogin" disabled="true">
+            </div>
+        
+        <script>
+             function validation() {
+                var inputEmailLogin, inputPasswordLogin, inputEmailSignUp, inputPasswordSignUp, responseEmail = "";
+                var submitButton = document.getElementById("submitLogin");
+                var submitSignUp = document.getElementById("submitSignUp");
+
+                // Check input email against this pattern.
+                var pattern = new RegExp("[a-z0-9._%+-]+@uncg.edu$");
+                inputEmailLogin = document.getElementById("email").value;
+                inputPasswordLogin = document.getElementById("password").value;
+                inputEmailSignUp = document.getElementById("emailSignUp").value;
+                inputPasswordSignUp = document.getElementById("passwordSignUp").value;
+
+                // Login button
+                if (pattern.test(inputEmailLogin) && inputPasswordLogin.length > 1) {
+                    submitButton.disabled = false;
+                } else {
+                    responseEmail = "Please enter a UNCG email";
+                    submitButton.disabled = true;
+                }
+
+                // Sign up button
+                if (pattern.test(inputEmailSignUp) && inputPasswordSignUp.length > 1) {
+                    submitSignUp.disabled = false;
+                } else {
+                    responseEmail = "Please enter a UNCG email";
+                    submitSignUp.disabled = true;
+                }
+                document.getElementById("validationResult").innerHTML = responseEmail;
+            }
+        </script>
+            <!--</form>-->
+<!--        </div>
+    </div>
+</div>-->
+
+<!--  <div class="modal-header">
+  ...
+</div>
+<div class="modal-body">
+  ...
+</div>
+<div class="modal-footer">
+  ...
+</div>-->

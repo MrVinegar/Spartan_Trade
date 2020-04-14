@@ -33,32 +33,8 @@ hr {
   border-bottom: 0;
 }
 
-#phoneNumber, #category1, #contact1 {
-  display: none;
-}
-
 imge {
   border: 5px solid white;
   padding: 5px;
   
-}
-.spart_trade_logo {
-  background-image: url('../img/spartan_logo.png'); 
-  background-position: 50% 45%; 
-  background-repeat: no-repeat;
-}
-.gold:hover {
-  color:#ffb71b !important
-}
-
-.tilte1 { 
-  color: #ffb71b; 
-  font-weight: 500;
-}
-.modal-header {
-  border-bottom: 0 none;
-}
-
-.modal-footer {
-    border-top: 0 none;
 }

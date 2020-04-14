@@ -419,6 +419,25 @@ $(function () {
   $('[data-toggle="popover"]').popover()
 })
 
+document.getElementById("call").onclick = function() {
+  alert('fsdfas');
+  document.getElementById("callInput").display = "inline";
+}
+
+
+function numberToggle() {
+
+    var contact = document.getElementById("contactMethod");
+    var selected_option = $('#contactMethod option:selected');
+    var user_info = document.getElementById("phoneNumber");
+    if (selected_option.val() == "call") {
+        user_info.style.display = "block";
+    } else {
+        user_info.style.display = "none";
+    }
+}
+;
+
 
 
 // form validation starts here
@@ -426,6 +445,8 @@ $(function () {
 // https://webdamn.com/bootstrap-modal-form-ajax-submit-with-jquery/
 
 $(document).ready(function () {
+    var test = document.getElementById("contact1").innerHTML;
+    alert(test);
   $("#loginForm").submit(function (event) {
     submitForm();
     return false;
@@ -446,6 +467,8 @@ function submitForm() {
     }
   });
 }
+
+
 
 ``` 
 * What the php file supposed to look like at server end

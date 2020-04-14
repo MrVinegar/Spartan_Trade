@@ -1,0 +1,98 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="assets/js/HmPageUpdate.js"></script>
+<script src="assets/js/HomepageForm.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
+
+<link href="assets/css/toolkit-inverse.css" rel="stylesheet">
+<link href="assets/css/hover.css" rel="stylesheet">
+<link href="assets/css/application.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&family=Lexend+Giga&display=swap" rel="stylesheet">
+<%@page import="Control.Account.Account"%>
+
+<%
+    Account acc = new Account(request, response);
+    boolean isLogin = acc.checkIsSignIn();
+%>
+<div class="col-md-2 sidebar">
+    <nav class="sidebar-nav">
+        <div class="sidebar-header">
+            <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse"
+                    data-target="#nav-toggleable-md">
+                <span class="sr-only">Toggle nav</span>
+            </button>
+            <a class="sidebar-brand img-responsive" href="Home.jsp">
+                <span class="icon sidebar-brand-icon"><img src="assets/img/spartan_logo.png" alt=""></span>
+            </a>
+        </div>
+        <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+            <ul class="nav nav-pills nav-stacked flex-column">              
+                <li class="nav-header">Dashboards</li>
+                <li class="nav-item">
+                    <a class="nav-link active hvr-underline-from-center" href="Home.jsp">Home Page</a>
+                </li>
+                <%
+                    // Change nav bar if user is logged in.
+                    if (isLogin) {
+                %>
+                <li class="nav-item">
+                    <a class="nav-link gold hvr-underline-from-center" href="Search?code=URSR&To=204&page=0" style="color: inherit;">Account Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link gold hvr-underline-from-center" href="SubmitByUser.jsp">
+                        Post an item
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <hr class="visible-xs mt-3">
+                </li>
+                <li class="nav-header ">User Account</li>
+                <li class="nav-item" id="js-popoverContent">
+                    <a class="nav-link gold hvr-underline-from-center" href="Search?code=URSR&To=204&page=0">
+                        username
+                        <button class="btn btn-default navbar-btn navbar-btn-avatar ml-2" data-toggle="popover">
+                            <img class="rounded-circle" src="assets/img/avatar-dhg.png">
+                        </button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link gold hvr-underline-from-center" href="Main_Menu.jsp">Main Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link gold hvr-underline-from-center" href="Acc?code=Logoff&To=200">Logoff</a>
+                </li>
+                <%
+                } else {
+                %>
+                <li class="nav-item">
+                    <a class="nav-link gold hvr-underline-from-center" data-toggle="modal" data-toggle="modal" data-target="#login-modal">Login</a>
+                </li>
+                <!--<li><a href="Home.jsp" class='test-modal'>Lab 6</a></li>-->
+                <!-- <li>
+                     <a href="modalTest.html" data-target="#theModal" data-toggle="modal">Lab 6</a>
+                 </li>-->
+                <li class="nav-item">
+                    <a class="nav-link gold hvr-underline-from-center" href="SubmitListing.jsp">Post Item (Default)</a>
+                </li>
+                <%
+                    }
+                %>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--                    <div id="theModal" class="modal fade text-center">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            </div>
+                        </div>
+                    </div>-->
