@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="pt-1 ml-1">  
-<form action="Trade" method="POST" id="edit_form" class="needs-validation" novalidate>   
+<form action="Trade" method="POST" id="submit_form" class="needs-validation" novalidate>   
 
                         <div class="w3-panel w3-border w3-border-light-blue w3-hover-border-amber py-5 px-5">
                             <!--<form action="Trade" method="POST" id="edit_form" class="needs-validation" novalidate>-->   

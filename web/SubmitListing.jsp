@@ -45,8 +45,10 @@
                     </div>
 
                     <div class="pt-1 ml-1">  
+<form action="Trade" method="POST" id="submit_form" class="needs-validation " novalidate>   
+
                         <div class="w3-panel w3-border w3-border-light-blue w3-hover-border-amber py-5 px-5">
-                            <form action="Trade" method="POST" id="submitDefault" class="needs-validation " novalidate>   
+<!--                            <form action="Trade" method="POST" id="submit_form" class="needs-validation " novalidate>   -->
                                 <input type="hidden" name="code" value="postItemD">
 
                                 <div class="form-group row">
@@ -116,8 +118,9 @@
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Please fill out this field.</div> 
                             </div>
+                            <button type="submit" id="submitItem" class="btn btn-success">Submit</button>
 
-                            <button type="button" id="submitItem" class="btn btn-success">Submit</button>
+<!--                            <button type="button" id="submitItem" class="btn btn-success">Submit</button>-->
 
                             </form>
 
@@ -149,7 +152,23 @@
                 categoryOption.value = category;
             });
 
-
+(function () {
+                                                    'use strict';
+                                                    window.addEventListener('load', function () {
+                                                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                                        var forms = document.getElementsByClassName('needs-validation');
+                                                        // Loop over them and prevent submission
+                                                        var validation = Array.prototype.filter.call(forms, function (form) {
+                                                            form.addEventListener('submit', function (event) {
+                                                                if (form.checkValidity() === false) {
+                                                                    event.preventDefault();
+                                                                    event.stopPropagation();
+                                                                }
+                                                                form.classList.add('was-validated');
+                                                            }, false);                 
+                                                        });
+                                                    }, false);                                            
+    })();
 
 //            $("#addImage").click(function () {
 //                var html = '';
