@@ -45,7 +45,7 @@ public class AccPort extends HttpServlet {
             throws ServletException, IOException {
         try {
             String code = _request.getParameter("code");
-            Account acc = new Account(_request,_response);
+            Account acc = new Account(getServletConfig(),_request,_response);
             if(code == null || code == ""){
                 //Err handler
                 return;
@@ -59,6 +59,9 @@ public class AccPort extends HttpServlet {
                     break;
                 case "Logoff":
                     acc.logOff();
+                    break;
+                case "Delete":
+                    acc.deleteAccount();
                     break;
             }
         } catch (JSONException ex) {

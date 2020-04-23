@@ -7,8 +7,6 @@ package Object;
 
 import static Helper.JSONprocessor.jsonToObject;
 import static Helper.JSONprocessor.objectToJson;
-import com.google.gson.internal.LinkedTreeMap;
-import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONException;
 

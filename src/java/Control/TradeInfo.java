@@ -51,7 +51,7 @@ public class TradeInfo extends HttpServlet {
             throws ServletException, IOException {
         try {
             String code = _request.getParameter("code");
-            TradeItemList trade = new TradeItemList(_request, _response);
+            TradeItemList trade = new TradeItemList(getServletConfig(),_request, _response);
             if(code == null || code == ""){
                 //Err handler
                 return;

@@ -1,7 +1,7 @@
 package Control.Account;
 
 import Control.ServletBased;
-import Dict.Config.ServerENUM;
+import Dict.ServerENUM;
 import Helper.EmailHandler;
 import static Helper.HttpHandler.getCheckedResponse;
 import static Helper.HttpHandler.sendAjaxResponse;
@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +26,10 @@ import org.json.JSONException;
  */
 public class Account extends ServletBased {
 
-    public Account(HttpServletRequest _request, HttpServletResponse _response) {
-        super(_request, _response);
+    public Account(ServletConfig _config, HttpServletRequest _request, HttpServletResponse _response) {
+        super(_config, _request, _response);
     }
-    
+
     /**
      * Sign up a account, returns result in Ajax way.
      *
@@ -76,7 +77,7 @@ public class Account extends ServletBased {
         String jsonResponse = getCheckedResponse(this, sendHttpRequest(url, null, "POST", headerMap), "Ajax");
         if (jsonResponse == null) {
             return;
-        }        
+        }
         Map responseBody = jsonToObject(jsonResponse, Map.class);
         if (checkSignInResponse(responseBody)) {
             this.request.getSession().setAttribute("Authorization64", headerMap);
@@ -86,7 +87,24 @@ public class Account extends ServletBased {
             sendAjaxResponse(this.response, "Failed", "Oops, something went wrong.");
         }
     }
-    
+
+    public void deleteAccount() throws IOException, JSONException, ServletException {
+        if (!checkIsSignIn()) {
+            sendAjaxResponse(this.response, "Error", "You have to signIn before you can do this operation.");
+            return;
+        }
+
+        int userID = (int) ((Double) (((Map) this.request.getSession().getAttribute("CurrentUserInfo")).get("userId"))).doubleValue();
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(2) + userID;
+        
+        String json = getCheckedResponse(this, sendHttpRequest(url, null, "DELETE", (Map) this.request.getSession().getAttribute("Authorization64")), "Ajax");
+        if (json == null) {
+            return;
+        }
+        
+        sendAjaxResponse(this.response, "Success", "No further information.");
+    }
+
     /**
      * logoff.
      */
@@ -100,7 +118,7 @@ public class Account extends ServletBased {
      * Check is there an user already signIn.
      *
      * @return a boolean value represents the login status.
-     */   
+     */
     public boolean checkIsSignIn() {
         if (this.request.getSession().getAttribute("Authorization64") == null) {
             return false;

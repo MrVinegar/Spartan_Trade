@@ -1,7 +1,7 @@
 package Control.Trade;
 
 import Control.ServletBased;
-import Dict.Config.ServerENUM;
+import Dict.ServerENUM;
 import static Helper.HttpHandler.*;
 import static Helper.JSONprocessor.*;
 import Object.STList_ITEM;
@@ -9,6 +9,7 @@ import Object.STList_SR;
 import Object.STPagination;
 import java.io.IOException;
 import java.util.Map;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,8 +30,8 @@ public class TradeItemList extends ServletBased {
      * @param _request HttpServletRequest
      * @param _response HttpServletResponse
      */
-    public TradeItemList(HttpServletRequest _request, HttpServletResponse _response) {
-        super(_request, _response);
+    public TradeItemList(ServletConfig _config, HttpServletRequest _request, HttpServletResponse _response) {
+        super(_config, _request, _response);
     }
 
     /**

@@ -6,6 +6,7 @@
 
 package Control;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,11 +16,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author Yi Qiu
  */
 public class ServletBased {
+    protected ServletConfig config;
     protected HttpServletRequest request;
     protected HttpServletResponse response;
     protected Integer Forward = 205;//Page Not Found
 
-    public ServletBased(HttpServletRequest _request, HttpServletResponse _response) {
+    public ServletBased(ServletConfig _config,HttpServletRequest _request, HttpServletResponse _response) {
+        this.config = _config;
         this.request = _request;
         this.response = _response;
     }  

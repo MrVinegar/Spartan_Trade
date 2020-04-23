@@ -7,7 +7,6 @@ package Control;
 
 import Control.Trade.TradeAction;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -24,32 +23,6 @@ import org.json.JSONException;
 @WebServlet(name = "TradePort", urlPatterns = {"/Trade"})
 public class TradePort extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TradePort</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TradePort at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -62,7 +35,7 @@ public class TradePort extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -79,7 +52,7 @@ public class TradePort extends HttpServlet {
 
         try {
             String code = _request.getParameter("code");
-            TradeAction trade = new TradeAction(_request, _response);
+            TradeAction trade = new TradeAction(getServletConfig(),_request, _response);
             if(code == null || code == ""){
                 //Err handler
                 return;
@@ -93,6 +66,11 @@ public class TradePort extends HttpServlet {
                     break;
                 case "updateItemU":
                     trade.updateItemByUser();
+                    break;
+                case "uploadImage":
+                    break;
+                case "deleteItemU":
+                    trade.deleteItemByUser();
                     break;
             }
         } catch (InstantiationException ex) {

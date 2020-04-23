@@ -5,7 +5,6 @@
  */
 package Object;
 
-import java.net.URI;
 import org.apache.http.client.utils.URIBuilder;
 
 /**
