@@ -104,6 +104,41 @@ public class Account extends ServletBased {
         
         sendAjaxResponse(this.response, "Success", "No further information.");
     }
+    
+    public void forgotPassword() throws IOException, IOException, ServletException, JSONException{
+        String email = this.request.getParameter("email");
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(5) + "?email=" + email;
+        
+        String json = getCheckedResponse(this,sendHttpRequest(url,null,"POST",null),"Ajax");
+        if (json == null) {
+            return;
+        }        
+        
+        String ecode = Base64.getUrlEncoder().encodeToString(json.getBytes());
+        String eurl = this.request.getContextPath() + "/reset?ecode=" + ecode; 
+        
+        ValidationKey vkey = jsonToObject(json, ValidationKey.class);
+        EmailHandler Eh = new EmailHandler(ServerENUM.getContent(101), ServerENUM.getContent(102), ServerENUM.getContent(103));
+        if (Eh.sendMail(vkey.getEmail(), "Email Validation", eurl)) {
+            sendAjaxResponse(this.response, "Success", "Password Reset Email Sent.");
+        } else {
+            sendAjaxResponse(this.response, "Error", "Oops, something went wrong.");
+        }
+    }
+    
+    public void updatePassword() throws IOException, ServletException, JSONException{
+        String ecode = this.request.getParameter("ecode");
+        String password = this.request.getParameter("password");
+        String url = ServerENUM.getContent(0) + ServerENUM.getContent(5) + "?password=" + password;
+
+        ecode = new String(Base64.getUrlDecoder().decode(ecode));
+        String json = getCheckedResponse(this,sendHttpRequest(url,ecode,"PUT",null),"Ajax");
+        if (json == null) {
+            return;
+        }   
+        sendAjaxResponse(this.response, "Success", "No further information.");
+        
+    }
 
     /**
      * logoff.

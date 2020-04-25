@@ -16,6 +16,8 @@ public enum ServerENUM {
     USER_API("/users/", 2),
     LOGIN_API("/login", 3),
     REGISTER_API("/register", 4),
+    FORGOT_PASSWORD("/forgotPassword",5),
+    UPDATE_PASSWORD("/updatePassword",6),
     EMAIL_USERNAME("SpartanTrade2020", 101),
     EMAIL_PASSWORD("SpartanTrade2020A", 102),
     EMAIL_TYPE_GMAIL("Gmail", 103),

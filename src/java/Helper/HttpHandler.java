@@ -64,6 +64,7 @@ public class HttpHandler {
 
     public static HttpResponse sendHttpRequest(String _URL, String _Json, String _method, Map _headers) throws UnsupportedEncodingException, IOException {
         //Pre-set Variables
+        _Json = (_Json == null)?"null":_Json;
         HttpResponse response = null;
 
         //Creating Request and retrieve Response
