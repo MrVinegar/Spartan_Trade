@@ -4,21 +4,15 @@ import Control.Account.Account;
 import Control.ServletBased;
 import Dict.ServerENUM;
 import Helper.EmailHandler;
-import static Helper.FileFactory.getMD5;
+import static Helper.FileFactory.servletFileUpload;
 import static Helper.HttpHandler.*;
 import static Helper.JSONprocessor.*;
 import Object.ItemPostedRequest;
 import Object.STList_ITEM;
 import Object.ValidationKey;
-import com.jspsmart.upload.File;
-import com.jspsmart.upload.SmartUpload;
-import com.jspsmart.upload.SmartUploadException;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -61,9 +55,8 @@ public class TradeAction extends ServletBased {
         ValidationKey vkey = jsonToObject(jsonResponse, ValidationKey.class);
         EmailHandler Eh = new EmailHandler(ServerENUM.getContent(101), ServerENUM.getContent(102), ServerENUM.getContent(103));
         if (Eh.sendMail(vkey.getEmail(), "Post Confirmation", vkey.getValidationUrl())) {
-            String code = getCode();
-            this.request.getSession().setAttribute(code, Integer.toString(vkey.getEntityId()));
-            sendAjaxResponse(this.response, "Success", code);
+
+            sendAjaxResponse(this.response, "Success", "");
         } else {
             sendAjaxResponse(this.response, "Error", "Send Validation Email Failed.");
         }
@@ -87,9 +80,8 @@ public class TradeAction extends ServletBased {
             if (jsonResponse == null) {
                 return;
             }
-            String code = getCode();
-            this.request.getSession().setAttribute(code, jsonResponse);
-            sendAjaxResponse(this.response, "Success", code);
+
+            uploadImageU(jsonResponse);
         } else {
             sendAjaxResponse(this.response, "Error", "Try login first.");
         }
@@ -137,29 +129,17 @@ public class TradeAction extends ServletBased {
         }  
     }
 
-    public void uploadImageD() throws ServletException{
-        SmartUpload upload = new SmartUpload();
-        upload.initialize(this.config, request, response);
-        upload.setMaxFileSize(4 * 1024 * 1024);
-        upload.setAllowedFilesList("jpg,png,bmp");
-        try {
-            upload.upload();
-            for (int i = 0; i < upload.getFiles().getCount(); i++) {
-                File file = upload.getFiles().getFile(i);
-                
-                if (!file.isMissing()) {
-
-                    String ext = upload.getFiles().getFile(i).getFileExt();
-
-                    String fileName = getMD5(file.getContentString().getBytes()) + "." + ext;
-
-                    file.saveAs("url" + "/" + fileName);
-                }
-            }
-        } catch (SmartUploadException | IOException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(TradeAction.class.getName()).log(Level.SEVERE, null, ex);
+    public void uploadImageU(String _itemId) throws ServletException, IOException, JSONException{
+        String AllowedFilesList = "jpg,png,bmp";
+        if(servletFileUpload(this.request, AllowedFilesList)){
+//            String to = objectToJson(this.request.getSession().getAttribute("successList")).toString();
+//            String json = objectToJson(this.request.getSession().getAttribute("failList")).toString();
+            sendAjaxResponse(this.response, "Success", "");
+        }else{
+//            String json = objectToJson(this.request.getSession().getAttribute("failList")).toString();
+            sendAjaxResponse(this.response, "Error", "");
         }
-
+        
     }
 
     private static String getCode() {
