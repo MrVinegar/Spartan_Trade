@@ -1,0 +1,308 @@
+<%@page import="Object.STList_SR"%>
+<%@page import="Object.STList_ITEM"%>
+<%@page import="Object.STPagination"%>
+<%@page import="Control.Account.Account"%>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+
+        <title>
+            Listing History &middot; 
+        </title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&family=Lexend+Giga&display=swap"
+          rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="../assets/css/toolkit-inverse.css" rel="stylesheet">
+      
+      
+        <link href="../assets/css/application.css" rel="stylesheet">
+
+        <style>
+            /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+            /* this chunk of css is not part of the toolkit :) */
+
+
+            #post {
+                display: none;
+            }
+
+            /* body {
+                color: #566787;
+                        background: #f5f5f5;
+                        font-family: 'Varela Round', sans-serif;
+                        font-size: 13px;
+                } */
+            /* below code comes from 
+            https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=crud-data-table-for-database-with-modal-form
+            
+            /* table style */
+            table.table tr th,
+            table.table tr td {
+                border-color: #e9e9e9;
+                padding: 12px 15px;
+                vertical-align: middle;
+            }
+
+            table.table tr th:first-child {
+
+            }
+
+            table.table tr th:last-child {
+                width: 100px;
+            }
+
+            table.table-striped tbody tr:nth-of-type(odd) {
+                background-color:#243a6b;
+            }
+
+            table.table-striped.table-hover tbody tr:hover {
+                background: #f5f5f5;
+            }
+
+            table.table th i {
+                font-size: 13px;
+                margin: 0 5px;
+                cursor: pointer;
+            }
+
+            table.table td:last-child i {
+                opacity: 0.9;
+                font-size: 22px;
+                margin: 0 5px;
+            }
+
+            table.table td a {
+                font-weight: bold;
+                color: #566787;
+                display: inline-block;
+                text-decoration: none;
+                outline: none !important;
+            }
+
+            table.table td a:hover {
+                color: #2196F3;
+            }
+
+            table.table td a.edit {
+                color: #FFC107;
+            }
+
+            table.table td a.delete {
+                color: #F44336;
+            }
+
+            table.table td i {
+                font-size: 19px;
+            }
+
+            table.table .avatar {
+                border-radius: 50%;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+            /* 
+            .hint-text {
+              float: left;
+              margin-top: 10px;
+              font-size: 13px;
+            } */
+
+
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 sidebar" >
+                    <nav class="sidebar-nav">
+                      <div class="sidebar-header">
+                        <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse"
+                          data-target="#nav-toggleable-md">
+                          <span class="sr-only">Toggle nav</span>
+                        </button>
+                        <a class="sidebar-brand img-responsive" href="index.html">
+                          <span class="icon sidebar-brand-icon"><img src="spartan_logo.png" alt=""></span>
+            
+                        </a>
+                      </div>
+            
+                      <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+                        <form class="sidebar-form">
+                          <input class="form-control" type="text" placeholder="Search...">
+                          <button type="submit" class="btn-link">
+                            <span class="icon icon-magnifying-glass"></span>
+                          </button>
+                        </form>
+                        <ul class="nav nav-pills nav-stacked flex-column">
+                          <li class="nav-header">Usre Account</li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="../acc/v4/docs/index.html">Welcome!
+                              <button class="btn btn-default navbar-btn navbar-btn-avatar ml-2" data-toggle="popover">
+                                <img class="rounded-circle" src="../acc/docs/assets/img/avatar-dhg.png">
+                              </button>
+                            </a>
+            
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="../main-menu.html">Overview</a>
+                          </li>
+            
+            
+                          <li class="nav-item">
+                            <a class="nav-link active" href="">Order History</a>
+                          </li>
+            
+                          <li>
+                            <hr class="visible-xs mt-3">
+                          </li>
+            
+            
+                          <li class="nav-header">Categories</li>
+                          <li class="nav-item">
+                            <a class="nav-link " href="../icon-nav/index.html">
+                              Category1
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="" target="blank">
+                              Category2
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link " href="">
+                              Category3
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="" data-toggle="modal">
+                              Category4
+                            </a>
+                          </li>
+                        </ul>
+                        <hr class="visible-xs mt-3">
+                      </div>
+                    </nav>
+                  </div>
+                <div class="col-md-10 content">
+                    <div class="dashhead">
+                        <div class="dashhead-titles">
+                            <h6 class="dashhead-subtitle">Listings</h6>
+                            <h2 class="dashhead-title mb-3" style="color: #ffb71b; font-weight: 500;">Listing history</h2>
+                        </div>
+                    </div>
+
+                    <div class="flextable table-actions">
+                        <div class="flextable-item">
+
+                        </div>
+                        <div class="flextable-item"></div>
+                        <div class="flextable-item"></div>
+                        <div class="flextable-item"></div>
+                        <div class="flextable-item"></div>
+                        <div class="flextable-item"></div>
+                    
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr class="text-primary">
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Updated Date</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            
+                        
+                            <tr>
+                                <td class="text-secondary"><%= sr.getTitle()%></td>
+                                <td class="text-info " ><%= sr.getDescription()%></td>
+                                <td class="text-success"><%= sr.getUpdatedDate()%></td>
+                                <td class="text-danger"><%= sr.getPrice()%></td>
+                                <td>
+                                    <a href="Search?code=URitem&itemID=<%=sr.getItemId()%>&To=206" class="edit" ><i class="material-icons"
+                                                                                                                    data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#deleteOrder<%=sr.getItemId()%>" class="delete" data-toggle="modal"><i class="material-icons"
+                                                                                                 data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
+                            </tr>
+
+                        <div id="deleteOrder<%=sr.getItemId()%>" class="modal fade">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <form action="Trade" method="post" id="delete_form">
+                                        <input type="hidden" name="code" value="deleteItemU">
+                                        <input type="hidden" name="itemId" value="<%=sr.getItemId()%>">
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Delete Listing</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">					
+                                            <p>Are you sure you want to delete the following item?</p>
+                                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                            <div class="text-center">
+                                                <p class="text-muted">Item Title: <span class="text-info font-weight-bold"><%=sr.getTitle()%></span></p>
+                                                <p class="text-muted">Created Date: <span class="text-info font-weight-bold"><%=sr.getUpdatedDate()%></span></p>
+                                                <p class="text-muted">Price: <span class="text-info font-weight-bold"><%=sr.getPrice()%></span></p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                            <input type="submit" id="deleteItem" class="btn btn-danger" value="Delete">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </tbody>
+                    </table>
+
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination">
+                                <%
+                                    int pages = SearchResult.getTotalPages();
+                                    for (int i = 0; i < pages; i++) {
+                                %>
+                                <li class="page-item active"><a class="page-link" href="Search?code=URSR&To=204&page=<%=i%>"> <%= i + 1%> </a></li>
+                                    <%
+                                        }
+                                    %> 
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/tether.min.js"></script>
+        <script src="../assets/js/chart.js"></script>
+        <script src="../assets/js/tablesorter.min.js"></script>
+        <script src="../assets/js/toolkit.js"></script>
+        <script src="../assets/js/application.js"></script>
+        <script>
+            // execute/clear BS loaders for docs
+            $(function () {
+                while (window.BS && window.BS.loader && window.BS.loader.length) {
+                    (window.BS.loader.pop())()
+                }
+            })
+        </script>
+    </body>
+</html>
+

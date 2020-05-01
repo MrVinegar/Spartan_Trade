@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <title>
+
+
+    Overview &middot;
+
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&family=Lexend+Giga&display=swap"
+    rel="stylesheet">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+  <link href="assets/css/toolkit-inverse.css" rel="stylesheet">
+  <link href="assets/css/application.css" rel="stylesheet">
+  <link href="assets/css/W3schools-edited.css" rel="stylesheet">
+
+
+  <style>
+    /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+    /* this chunk of css is not part of the toolkit :) */
+    .mySlides {
+      display: none;
+    }
+
+    body {
+      width: 1px;
+      min-width: 100%;
+      *width: 100%;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 sidebar">
+        <nav class="sidebar-nav navbar-expand-xl">
+          <div class="sidebar-header">
+            <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse"
+              data-target="#nav-toggleable-md">
+              <span class="sr-only">Toggle nav</span>
+            </button>
+            <a class="sidebar-brand img-responsive ml-4" href="index.html">
+              <span class="icon sidebar-brand-icon"><img src="assets/img/spartan_nav_icon2.png" alt=""></span>
+            </a>
+          </div>
+
+          <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+            <!-- <form class="sidebar-form">
+                    <input class="form-control" type="text" placeholder="Search...">
+                    <button type="submit" class="btn-link">
+                      <span class="icon icon-magnifying-glass"></span>
+                    </button>
+                  </form> -->
+
+            <ul class="nav nav-pills nav-stacked flex-column">
+
+              <!-- User Panel -->
+              <li class="nav-header ">User Account</li>
+              <li class=" dropdown ">
+                <a href="#" class="btn btn-default navbar-btn navbar-btn-avatar ml-2 dropdown-toggle user-action gold"
+                  data-toggle="dropdown">
+                  <img class="rounded-circle mr-2" src="https://via.placeholder.com/200">
+                  s_xiao <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+                  <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
+                  <li class="divider dropdown-divider"></li>
+                  <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                      Logout</a></li>
+                </ul>
+              </li>
+              <li class="nav- ">
+                <a class="nav-link gold hvr-underline-from-center" href="main-menu.html" style="color: inherit;"><i
+                    class="fa fa-th-list mr-2" aria-hidden="true"></i>
+                  Main Menu</a>
+              </li>
+              <li class="nav-item mb-3">
+                <a class="nav-link gold hvr-underline-from-center" href="index.html"><i
+                    class="fa fa-home mr-2"></i><span>Overview</span></a>
+              </li>
+
+
+
+              <!-- <div id="main_panel" class="nav-item"> -->
+              <!-- <li class="nav-item">
+                      <hr class="visible-xs mt-3">
+                    </li> -->
+              <li class="nav-header">Dashboards</li>
+              <li class="nav-item">
+                <a class="nav-link active hvr-underline-from-center" href="index.html"><i
+                    class="fa fa-home mr-2"></i><span>Overview</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" data-toggle="modal" data-toggle="modal"
+                  data-target="#login-modal"><i class="fa fa-sign-in mr-2"></i>Sign In here</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="Editlisting.html" style="color: inherit;"><i
+                    class="fa fa-plus mr-1" aria-hidden="true"></i>
+                  Post Item</a>
+              </li>
+              <li class="nav-item mb-3">
+                <a class="nav-link gold hvr-underline-from-center" href="" style="color: inherit;" data-toggle="modal"
+                  data-target="#deleteAccount"><i class="fa fa-search mr-1" aria-hidden="true"></i>
+                  View Listing</a>
+              </li>
+
+              <!-- User info  -->
+              <!-- <li class="nav-item">
+                      <hr class="visible-xs mt-3">
+                    </li> -->
+
+              <li class="nav-header ">Useful Link</li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="user-manual/index.html">
+                  <i class="fa fa-question-circle mr-1" aria-hidden="true"></i>
+                  User Manual
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="report.html">
+                  <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>Safety Info
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfVInBReL6jOT4gp7yr4a5wM-FbeHyoVobUfpJr9MqFZmMBPA/viewform?usp=sf_link"
+                  target="_blank" rel="noopener noreferrer"><i class="fa fa-commenting-o mr-1" aria-hidden="true"></i>
+                  Feedback?</a>
+              </li>
+              <!-- <li class="nav-item">
+                      <a class="nav-link gold hvr-underline-from-center" href="icon-nav/index.html">
+                        Thumbnail View
+                      </a>
+                    </li>
+                    <li class="nav-item ">
+                      <a class="nav-link gold hvr-underline-from-center" href="item-info.html" target="blank">
+                        Item Info Page
+                      </a>
+                    </li>
+      
+                    <li class="nav-item ">
+                      <a class="nav-link gold hvr-underline-from-center" href="Editlisting.html" target="blank">
+                        Post Item
+                      </a>
+                    </li>
+      
+                    <li class="nav-item ">
+                      <a class="nav-link gold hvr-underline-from-center" href="order-history/item-editing.html" target="blank">
+                        Edit Item
+                      </a>
+                    </li> -->
+
+            </ul>
+
+          </div>
+
+        </nav>
+      </div>
+      <div class="col-md-9 content">
+        <div class="dashhead">
+          <div class="dashhead-titles">
+            <h6 class="dashhead-subtitle">Item Page</h6>
+            <h2 class="dashhead-title" style="color: #ffb71b; font-weight: 500;">Item Information
+            </h2>
+          </div>
+
+          <div class="btn-toolbar dashhead-toolbar">
+            <div class="btn-toolbar-item input-with-icon">
+              <input type="text" value="01/01/20 - 01/08/20" class="form-control" data-provide="datepicker">
+              <span class="icon icon-calendar"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hr-divider mt-3">
+          <h3 class="hr-divider-content hr-divider-heading"></h3>
+        </div>
+
+
+        <main class="mt-5">
+          <div class="dark-grey-text">
+
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-4 w3-display-container" style="max-width: max-content;">
+
+                <img class="mySlides w3-image" src="assets/img/icon_placeholder2.png" alt="">
+                <img class="mySlides w3-image"
+                  src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/2.jpg" alt="">
+                <img class="mySlides w3-image"
+                  src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/3.jpg" alt="">
+
+                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+              </div>
+
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-4">
+
+                <!--Content-->
+                <div class="p-1">
+
+                  <div class="mb-3">
+                    <a href="">
+                      <span class=" badge-info badge mr-1">Category 2</span>
+                    </a>
+                    <a href="">
+                      <span class="badge-success badge mr-1">New</span>
+                    </a>
+                    <a href="">
+                      <span class="badge-primary badge mr-1">Deal</span>
+                    </a>
+                  </div>
+
+                  <!-- item descripnt  -->
+                  <p class="lead">
+                    <h1 class="text-shadow mb-3 text-primary ">Macbook Pro 2020</h1>
+                    <div class="badge-danger badge badge-pill lead font-weight-bolder ">$95</div>
+                  </p>
+
+                  <p class="lead">
+                    <h3 class=" font-weight-bold text-info">Description</h3>
+                  </p>
+                  <p class="text-secondary font-weight-light">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Culpa, distinctio rerum fugit quo, deserunt, similique maxime maiores eligendi dignissimos quas
+                    magnam perferendis reiciendis! Dolorum, dolores repellat. Reiciendis at alias officiis.
+                  </p>
+                  <button class="btn btn-primary btn-md" data-toggle="popover" title="How to buy?"
+                    data-content="Contact Seller at 336-000-0000">Intrested in buying me?
+                  </button>
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <hr>
+
+            <div class="row d-flex justify-content-center wow fadeIn">
+
+              <div class="col-md-6 text-center">
+                <h4 class="my-4 h4 text-info">Seller Information</h4>
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="col-md-12">
+                      <tbody>
+
+                        <tr class="row mt-10">
+                          <td class="col-md-4"><span class="p_specification">Contact Method:
+                            </span> </td>
+                          <td class="col-md-8">
+                            <ul>
+                              <li><a href=""></a>Call</a></li>
+                            </ul>
+                          </td>
+                        </tr>
+
+                        <tr class="row mt-10">
+                          <td class="col-md-4"><span class="p_specification">Posted Data:
+                            </span>
+                          </td>
+                          <td class="col-md-8">
+                            <ul>
+                              <li>March 29, 2020</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <script src="assets/js/popper.min.js"></script>
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/tether.min.js"></script>
+      <script src="assets/js/chart.js"></script>
+      <script src="assets/js/tablesorter.min.js"></script>
+      <script src="assets/js/toolkit.js"></script>
+      <script src="assets/js/application.js"></script>
+      <script>
+        $(document).ready(function () {
+          $('[data-toggle="popover"]').popover();
+        });
+
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+          showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          if (n > x.length) { slideIndex = 1 }
+          if (n < 1) { slideIndex = x.length }
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          x[slideIndex - 1].style.display = "block";
+        }
+        // execute/clear BS loaders for docs
+        $(function () { while (window.BS && window.BS.loader && window.BS.loader.length) { (window.BS.loader.pop())() } })
+      </script>
+</body>
+
+</html>

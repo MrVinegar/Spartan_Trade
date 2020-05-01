@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <title>
+
+
+    Account Info &middot;
+
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&family=Lexend+Giga&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <link href="assets/css/toolkit-inverse.css" rel="stylesheet">
+  <link href="assets/css/application.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <!-- <link href="assets/css/W3schools-edited.css" rel="stylesheet"> -->
+
+  <style>
+    /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+    /* this chunk of css is not part of the toolkit :) */
+    body {
+      width: 1px;
+      min-width: 100%;
+      *width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .modal-confirm {
+      color: #636363;
+      width: 325px;
+    }
+
+    .modal-confirm .modal-content {
+      padding: 20px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .modal-confirm .modal-header {
+      border-bottom: none;
+      position: relative;
+    }
+
+    .modal-confirm h4 {
+      text-align: center;
+      font-size: 26px;
+      margin: 30px 0 -15px;
+    }
+
+    .modal-confirm .form-control,
+    .modal-confirm .btn {
+      min-height: 40px;
+      border-radius: 3px;
+    }
+
+    .modal-confirm .close {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+    }
+
+    .modal-confirm .modal-footer {
+      border: none;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    .modal-confirm .icon-box {
+      color: #fff;
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: -70px;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      z-index: 9;
+      background: #82ce34;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-confirm .icon-box i {
+      font-size: 58px;
+      position: relative;
+      top: 3px;
+    }
+
+    .modal-confirm.modal-dialog {
+      margin-top: 80px;
+    }
+
+    .modal-confirm .btn {
+      color: #fff;
+      border-radius: 4px;
+      background: #82ce34;
+      text-decoration: none;
+      transition: all 0.4s;
+      line-height: normal;
+      border: none;
+    }
+
+    .modal-confirm .btn:hover,
+    .modal-confirm .btn:focus {
+      background: #6fb32b;
+      outline: none;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        <nav class="sidebar-nav navbar-expand-xl">
+          <div class="sidebar-header">
+            <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse"
+              data-target="#nav-toggleable-md">
+              <span class="sr-only">Toggle nav</span>
+            </button>
+            <a class="sidebar-brand img-responsive" href="index.html">
+              <span class="icon sidebar-brand-icon"><img src="assets/img/spartan_nav_icon.png" alt=""></span>
+            </a>
+          </div>
+
+          <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+            <ul class="nav nav-pills nav-stacked flex-column">
+
+              <!-- User Panel -->
+              <li class="nav-header ">User Account</li>
+              <li class="nav-item dropdown ">
+                <a href="#" class="btn btn-default navbar-btn navbar-btn-avatar ml-2 dropdown-toggle user-action gold"
+                  data-toggle="dropdown">
+                  <img class="rounded-circle mr-2" src="acc/docs/assets/img/avatar-dhg.png">
+                  s_xiao <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+                  <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
+                  <li class="divider dropdown-divider"></li>
+                  <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                      Logout</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="main-menu.html" style="color: inherit;"><i
+                    class="fa fa-th-list mr-2" aria-hidden="true"></i>
+                  Main Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="index.html"><i
+                    class="fa fa-home mr-2"></i><span>Overview</span></a>
+              </li>
+
+              <li class="nav-item">
+
+                <hr class="visible-xs mt-3">
+              </li>
+
+
+              <!-- <div id="main_panel" class="nav-item"> -->
+              <li class="nav-header">Dashboards</li>
+              <li class="nav-item">
+                <a class="nav-link active hvr-underline-from-center" href="index.html"><i
+                    class="fa fa-home mr-2"></i><span>Overview</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" data-toggle="modal" data-toggle="modal"
+                  data-target="#login-modal"><i class="fa fa-sign-in mr-2"></i>Sign In here</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="sub-menu.html" style="color: inherit;"><i
+                    class="fa fa-plus mr-2" aria-hidden="true"></i>
+                  Post Item</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="sub-menu.html" style="color: inherit;"><i
+                    class="fa fa-search mr-2" aria-hidden="true"></i>
+                  View Listing</a>
+              </li>
+
+              <li class="nav-item">
+
+                <hr class="visible-xs mt-3">
+              </li>
+
+              <!-- </div> -->
+
+              <li class="nav-header ">Useful Link</li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="report.html">
+                  <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>Safety Info
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfVInBReL6jOT4gp7yr4a5wM-FbeHyoVobUfpJr9MqFZmMBPA/viewform?usp=sf_link"
+                  target="_blank" rel="noopener noreferrer"><i class="fa fa-commenting-o mr-2" aria-hidden="true"></i>
+                  Feedback?</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link gold hvr-underline-from-center" href="icon-nav/index.html">
+                  Thumbnail View
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link gold hvr-underline-from-center" href="item-info.html" target="blank">
+                  Item Info Page
+                </a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link gold hvr-underline-from-center" href="order-history/item-listing.html"
+                  target="blank">
+                  Post Item
+                </a>
+              </li>
+
+              <li class="nav-item ">
+                <a class="nav-link gold hvr-underline-from-center" href="order-history/item-editing.html"
+                  target="blank">
+                  Edit Item
+                </a>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </nav>
+      </div>
+      <div class="col-md-10 content">
+        <div class="dashhead">
+          <div class="dashhead-titles">
+            <!-- <h6 class="dashhead-subtitle">Dashboards</h6> -->
+            <h2 class="dashhead-title" style="color: #ffb71b; font-weight: 500;">Account Information Edit</h2>
+          </div>
+
+          <div class="btn-toolbar dashhead-toolbar">
+            <div class="btn-toolbar-item input-with-icon">
+              <!-- <input type="text" value="01/01/20 - 01/08/20" class="form-control" data-provide="datepicker">
+      <span class="icon icon-calendar"></span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="hr-divider mt-3">
+          <h3 class="hr-divider-content hr-divider-heading"></h3>
+        </div>
+
+
+        <div class="pt-1 mt-3">
+
+
+
+          <form id="myForm">
+
+            <div class="w3-panel w3-border w3-border-light-blue w3-hover-border-amber py-4 px-5">
+              <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label text-secondary">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" readonly class="form-control-plaintext text-white" id="email"
+                    value="something@uncg.edu">
+                </div>
+              </div>
+
+              <div class="form-group row ">
+                <label for="name" class="col-sm-2 col-form-label text-secondary">Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control " id="name" value="XXX XXX" required>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="w3-panel w3-border w3-border-light-blue w3-hover-border-amber py-4 px-5">
+              <!-- <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0 text-secondary">Change Password?</legend>
+                  <div class="col-sm-10">
+                    <div class="form-check" id="pwdChange">
+                      <input class="form-check-input" type="radio" name="changePwd" id="pw1" value="1"
+                        onclick="handleClick(this);">
+                      <label class="form-check-label" for="yesBut">
+                        Yes
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="changePwd" id="pw2" value="0"
+                        onclick="handleClick(this);" checked>
+                      <label class="form-check-label" for="noBut">
+                        No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset> -->
+              <div class="form-group row">
+                <label for="pwd1" class="col-sm-2 col-form-label text-secondary">Reset Password</label>
+                <div class="col-sm-10">
+                  <input name="pwd1"
+                    title="Password must contain at least 6 characters, including UPPER/lowercase and numbers."
+                    type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" class="form-control" id="pwd1">
+                </div>
+              </div>
+
+              <div class="form-group row mb-3">
+                <label for="pwd2" class="col-sm-2 col-form-label text-secondary">Confirm Password</label>
+                <div class="col-sm-10">
+                  <input name="pwd2" title="Please enter the same Password as above." type="password" required
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" class="form-control" id="pwd2">
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="w3-panel w3-border w3-border-light-blue w3-hover-border-amber py-4 px-5">
+              <div class="form-group row">
+                <label for="phone" class="col-sm-2 col-form-label text-secondary">Phone Number</label>
+                <div class="col-sm-10">
+                  <input type="tel" class="form-control " id="phone" value="XXX-XXX-XXXX">
+                </div>
+              </div>
+
+              <fieldset class="form-group">
+                <div class="row">
+                  <legend class="col-form-label col-sm-2 pt-0 text-secondary">Contact Method</legend>
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                        checked>
+                      <label class="form-check-label" for="gridRadios1">
+                        Phone Call
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                      <label class="form-check-label" for="gridRadios2">
+                        Text Message
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+                      <label class="form-check-label" for="gridRadios3">
+                        Email
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset> -->
+        </div>
+        </form>
+
+        <input type="submit" class="btn btn-default btn-primary " value="Save">
+
+      </div>
+    </div>
+
+    <div id="confirmation" class="modal fade">
+      <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="icon-box">
+              <i class="material-icons">&#xE876;</i>
+            </div>
+            <h4 class="modal-title text-success">Awesome!</h4>
+          </div>
+          <div class="modal-body">
+            <p class="text-center ">Your changes have been made, click Ok to go back to main menu</p>
+          </div>
+          <div class="modal-footer">
+            <a href="main-menu.html" class="btn btn-success btn-block">Main Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/tether.min.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/tablesorter.min.js"></script>
+    <script src="assets/js/toolkit.js"></script>
+    <script src="assets/js/application.js"></script>
+    <script>
+      // var currentValue = 0;
+
+      // function handleClick(myRadio) {
+      //   var pwd1 = document.getElementById('pwd1');
+      //   var pwd2 = document.getElementById('pwd2');
+      //   if (myRadio.value == 0) {
+      //     pwd1.disabled = true;
+      //     pwd2.disabled = true;
+      //   }  else {
+      //     pwd1.disabled = false;
+      //     pwd2.disabled = false;
+      //   }
+      // }
+
+      document.addEventListener("DOMContentLoaded", function () {
+
+        // JavaScript form validation
+
+        var checkPassword = function (str) {
+          var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+          return re.test(str);
+        };
+
+        var checkForm = function (e) {
+          re = /^\w+$/;
+          if (currentValue != 0) {
+            if (this.pwd1.value != "" && this.pwd1.value == this.pwd2.value) {
+              if (!checkPassword(this.pwd1.value)) {
+                alert("The password you have entered is not valid!");
+                this.pwd1.focus();
+                e.preventDefault();
+                return;
+              }
+            } else {
+              alert("Error: Please check that you've entered and confirmed your password!");
+              this.pwd1.focus();
+              e.preventDefault();
+              return;
+            }
+            alert("Both username and password are VALID!");
+          }
+        };
+
+        var myForm = document.getElementById("myForm");
+        myForm.addEventListener("submit", checkForm, true);
+
+
+
+        // HTML5 form validation
+        var supports_input_validity = function () {
+          var i = document.createElement("input");
+          return "setCustomValidity" in i;
+        }
+
+        if (supports_input_validity()) {
+
+          var pwd1Input = document.getElementById("pwd1");
+          pwd1Input.setCustomValidity(pwd1Input.title);
+
+          var pwd2Input = document.getElementById("pwd2");
+
+          // input key handlers
+          pwd1Input.addEventListener("keyup", function (e) {
+            this.setCustomValidity(this.validity.patternMismatch ? pwd1Input.title : "");
+            if (this.checkValidity()) {
+              pwd2Input.pattern = RegExp.escape(this.value);
+              pwd2Input.setCustomValidity(pwd2Input.title);
+            } else {
+              pwd2Input.pattern = this.pattern;
+              pwd2Input.setCustomValidity("");
+            }
+          }, false);
+
+          pwd2Input.addEventListener("keyup", function (e) {
+            this.setCustomValidity(this.validity.patternMismatch ? pwd2Input.title : "");
+          }, false);
+
+        }
+
+      }, false);
+
+      // execute/clear BS loaders for docs
+      $(function () { while (window.BS && window.BS.loader && window.BS.loader.length) { (window.BS.loader.pop())() } })
+
+
+      // $("#saveChange").click(function(){
+      //     $("#infoChange").hide().attr("formnovalidate");
+      //     $("#confirmation").toggle();
+      // });
+    </script>
+</body>
+
+</html>

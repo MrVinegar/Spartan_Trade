@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+    <script src="assets/js/application.js"></script>
+    <script src="assets/js/Trade.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+    <title>Submit Listing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&family=Lexend+Giga&display=swap"
+        rel="stylesheet">
+    <link href="assets/css/toolkit-inverse.css" rel="stylesheet">
+    <link href="assets/css/W3schools-edited.css" rel="stylesheet">
+    <link href="assets/css/application.css" rel="stylesheet">
+    <style>
+        /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+        /* this chunk of css is not part of the toolkit :) */
+        body {
+            width: 1px;
+            min-width: 100%;
+            *width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <nav class="sidebar-nav navbar-expand-xl">
+                <div class="sidebar-header">
+                    <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse"
+                        data-target="#nav-toggleable-md">
+                        <span class="sr-only">Toggle nav</span>
+                    </button>
+                    <a class="sidebar-brand img-responsive" href="index.html">
+                        <span class="icon sidebar-brand-icon"><img src="assets/img/spartan_nav_icon.png" alt=""></span>
+                    </a>
+                </div>
+
+                <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+
+                    <ul class="nav nav-pills nav-stacked flex-column">
+
+                        <!-- User Panel -->
+                        <li class="nav-item">
+                            <hr class="visible-xs mt-3">
+                        </li>
+                        <li class="nav-header ">User Account</li>
+                        <li class="nav-item dropdown ">
+                            <a href="#"
+                                class="btn btn-default navbar-btn navbar-btn-avatar ml-2 dropdown-toggle user-action gold"
+                                data-toggle="dropdown">
+                                <img class="rounded-circle mr-2" src="acc/docs/assets/img/avatar-dhg.png">
+                                s_xiao <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
+                                <li class="divider dropdown-divider"></li>
+                                <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                                        Logout</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center" href="main-menu.html"
+                                style="color: inherit;"><i class="fa fa-th-list mr-2" aria-hidden="true"></i>
+                                Main Menu</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center" href="index.html"><i
+                                    class="fa fa-home mr-2"></i><span>Overview</span></a>
+                        </li>
+
+
+
+                       <!-- main panel  -->
+                        <li class="nav-item">
+                            <hr class="visible-xs mt-3">
+                        </li>
+                        <li class="nav-header">Dashboards</li>
+                        <li class="nav-item">
+                            <a class="nav-link active hvr-underline-from-center" href="index.html"><i
+                                    class="fa fa-home mr-2"></i><span>Overview</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center" data-toggle="modal" data-toggle="modal"
+                                data-target="#login-modal"><i class="fa fa-sign-in mr-2"></i>Sign In here</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center" href="order-history/item-listing.html"
+                                style="color: inherit;"><i class="fa fa-plus mr-1" aria-hidden="true"></i>
+                                Post Item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center" href="" style="color: inherit;"
+                                data-toggle="modal" data-target="#deleteAccount"><i class="fa fa-search mr-1"
+                                    aria-hidden="true"></i>
+                                View Listing</a>
+                        </li>
+
+                        <!-- </div> -->
+
+                        <li class="nav-header ">Useful Link</li>
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center" href="user-manual/index.html">
+                                <i class="fa fa-question-circle mr-1" aria-hidden="true"></i>
+                                User Manual
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center" href="report.html">
+                                <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>Safety Info
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link gold hvr-underline-from-center"
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfVInBReL6jOT4gp7yr4a5wM-FbeHyoVobUfpJr9MqFZmMBPA/viewform?usp=sf_link"
+                                target="_blank" rel="noopener noreferrer"><i class="fa fa-commenting-o mr-1"
+                                    aria-hidden="true"></i>
+                                Feedback?</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </nav>
+            <div class="col-md-10 content ">
+                <div class="dashhead">
+                    <div class="dashhead-titles">
+                        <h6 class="dashhead-subtitle">Home Page</h6>
+                        <h2 class="dashhead-title" style="color: #ffb71b; font-weight: 500;">Post Item by Default User
+                        </h2>
+                    </div>
+                </div>
+                <hr class="m-t">
+                <div class="pt-1 ml-1 px-auto">
+                    <div class="card card-5">
+                        <div class="card-heading">
+                            <h2 class="title">Item Listing</h2>
+                        </div>
+                        <div class="card-body">
+
+                            <!-- main form  -->
+                            <form action="Trade" method="POST" id="submit_form" class="needs-validation " novalidate>
+                                <input type="hidden" name="code" value="postItemD">
+
+                                <!-- basic info  -->
+                                <div class="form-row">
+                                    <div class="">
+                                        <div class="mt-3 name float-left" for="name">Name</div>
+                                        <div class="value float-right">
+                                            <div class="input-group">
+                                                <input class="input--style-5" type="text" name="name" required="true">
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6" style="opacity: 0;">
+                                        <div class="mt-3 name float-left" for="email">UNCG Email</div>
+                                        <div class="value float-right">
+                                            <div class="input-group">
+                                                <input title="Enter a UNCG email ending in @uncg.edu"
+                                                    placeholder="Enter UNCG email address"
+                                                    pattern="[a-z0-9._%+-]+@uncg.edu$" required="true" id="email"
+                                                    class="input--style-5" type="text" name="email">
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please enter a UNCG Email.</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Category  -->
+                                <p hidden id="category1" value="1"></p>
+                                <div class="form-row">
+                                    <div class="name">Category</div>
+                                    <div class="value">
+                                        <select class="custom-select" id="categoryList" name="categoryId" required
+                                            style="background: #e5e5e5;padding: 0 22px;
+                                                        color: #555; border-radius: 5px;">
+                                            <option value="">Please Select a Category:</option>
+                                            <option value="1">Textbooks</option>
+                                            <option value="2">Services</option>
+                                            <option value="3">Roommates</option>
+                                            <option value="4">Supplies</option>
+                                        </select>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please Select a Category</div>
+                                    </div>
+                                </div>
+
+
+                                <!-- Item info  -->
+                                <div class="form-row">
+                                    <div for="title" class="name">Item Title</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" type="text" id="title" name="title" required>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please Select a Category</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div for="description" class="name">Description:</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <textarea class="input--style-5" rows="3" id="description"
+                                                name="description" required="true"
+                                                style="line-height: 20px!important"></textarea>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="name" for="price">Price</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-5" id="price" type="number" min="0" step="0.01"
+                                                name="price" required="true">
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please enter a price.</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="name" for="image">Image Upload</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="" id="image" type="file" name="image" style="color: #555; padding: 0 22px;
+                                                font-size: 16px;">
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please enter a price.</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- contact method  -->
+                                <p hidden id="contact1" value="email"></p>
+                                <div class="form-row">
+                                    <div class="name">Preferred Contact Method</div>
+                                    <div class="value">
+                                        <select class="custom-select" id="contactMethod" name="contactMethod" required
+                                            onmouseout="numberToggle()" onchange="numberToggle()" style="background: #e5e5e5;padding: 0 22px;
+                                        color: #555; border-radius: 5px;">
+                                            <option value="">Choose a Contact Method:</option>
+                                            <option value="call">Call</option>
+                                            <option value="email">Email</option>
+                                        </select>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please Select a Preferred Contact Method</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row" id="phoneNumber">
+                                    <div class="name" for="Number">Phone</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input placeholder="(XXX-XXX-XXXX)" class="" type="tel"
+                                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="Number" name="phone" required>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button class="btn1 btn1--red" type="submit">Submit Listing</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+
+        // checking current category/contact method 
+        $(document).ready(function ($) {
+
+            var contactMethod = document.getElementById('contact1').innerHTML;
+
+            var contactMethodOption = document.getElementById('contactMethod');
+            var user_info = document.getElementById("phoneNumber");
+            user_info.style.display = "none";
+            contactMethodOption.value = contactMethod;
+
+            if (contactMethod === "call") {
+                user_info.style.display = "block";
+            } else {
+
+                user_info.style.display = "none";
+            }
+            ;
+
+            var category = document.getElementById('category1').innerHTML;
+            var categoryOption = document.getElementById('categoryList');
+            categoryOption.value = category;
+        });
+
+        // validation from Bootstrap 
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+
+</html>

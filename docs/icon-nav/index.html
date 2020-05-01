@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+
+  <title>
+
+    Icon nav &middot;
+
+  </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@600&family=Lexend+Giga&display=swap"
+    rel="stylesheet">
+
+  <link href="../assets/css/toolkit-inverse.css" rel="stylesheet">
+  <link href="../assets/css/w3school-edited.css" rel="stylesheet">
+
+  <link href="../assets/css/application.css" rel="stylesheet">
+
+  <style>
+    /* note: this is a hack for ios iframe for bootstrap themes shopify page */
+    /* this chunk of css is not part of the toolkit :) */
+    body {
+      width: 1px;
+      min-width: 100%;
+      *width: 100%;
+    }
+
+    #batman {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.20);
+      border-radius: 14px;
+      background-image: url('../assets/img/icon_placeholder.png');
+      background-position: center;
+      width: 150px;
+      height: 150px;
+      background-repeat: no-repeat;
+      border: 5px solid #ffb71b;
+    }
+
+    .description {
+      /* width:max-content;max- */
+      max-width: max-content;
+
+      max-height: 75px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .description1 {
+      /* width:max-content;max- */
+      flex-wrap: nowrap;
+      font-size: 19px !important;
+      max-height: 65px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <div class="with-iconav">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 sidebar">
+          <nav class="sidebar-nav navbar-expand-xl">
+            <div class="sidebar-header">
+              <button class="nav-toggler nav-toggler-md sidebar-toggler" type="button" data-toggle="collapse"
+                data-target="#nav-toggleable-md">
+                <span class="sr-only">Toggle nav</span>
+              </button>
+              <a class="sidebar-brand img-responsive ml-4" href="../index.html">
+                <span class="icon sidebar-brand-icon"><img src="../assets/img/spartan_nav_icon2.png" alt=""></span>
+              </a>
+            </div>
+
+            <div class="collapse nav-toggleable-md" id="nav-toggleable-md">
+              <!-- <form class="sidebar-form">
+                <input class="form-control" type="text" placeholder="Search...">
+                <button type="submit" class="btn-link">
+                  <span class="icon icon-magnifying-glass"></span>
+                </button>
+              </form> -->
+
+              <ul class="nav nav-pills nav-stacked flex-column">
+
+                <!-- User Panel -->
+                <li class="nav-header ">User Account</li>
+                <li class=" dropdown ">
+                  <a href="#" class="btn btn-default navbar-btn navbar-btn-avatar ml-2 dropdown-toggle user-action gold"
+                    data-toggle="dropdown">
+                    <img class="rounded-circle mr-2" src="acc/docs/assets/img/avatar-dhg.png">
+                    s_xiao <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+                    <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
+                    <li class="divider dropdown-divider"></li>
+                    <li><a href="#" class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i>
+                        Logout</a></li>
+                  </ul>
+                </li>
+                <li class="nav- ">
+                  <a class="nav-link gold hvr-underline-from-center" href="main-menu.html" style="color: inherit;"><i
+                      class="fa fa-th-list mr-2" aria-hidden="true"></i>
+                    Main Menu</a>
+                </li>
+                <li class="nav-item mb-3">
+                  <a class="nav-link gold hvr-underline-from-center" href="index.html"><i
+                      class="fa fa-home mr-2"></i><span>Overview</span></a>
+                </li>
+
+
+
+                <!-- <div id="main_panel" class="nav-item"> -->
+                <!-- <li class="nav-item">
+                  <hr class="visible-xs mt-3">
+                </li> -->
+                <li class="nav-header">Dashboards</li>
+                <li class="nav-item">
+                  <a class="nav-link active hvr-underline-from-center" href="index.html"><i
+                      class="fa fa-home mr-2"></i><span>Overview</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link gold hvr-underline-from-center" data-toggle="modal" data-toggle="modal"
+                    data-target="#login-modal"><i class="fa fa-sign-in mr-2"></i>Sign In here</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link gold hvr-underline-from-center" href="Editlisting.html" style="color: inherit;"><i
+                      class="fa fa-plus mr-1" aria-hidden="true"></i>
+                    Post Item</a>
+                </li>
+                <li class="nav-item mb-3">
+                  <a class="nav-link gold hvr-underline-from-center" href="" style="color: inherit;" data-toggle="modal"
+                    data-target="#deleteAccount"><i class="fa fa-search mr-1" aria-hidden="true"></i>
+                    View Listing</a>
+                </li>
+
+                <!-- User info  -->
+                <!-- <li class="nav-item">
+                  <hr class="visible-xs mt-3">
+                </li> -->
+
+                <li class="nav-header ">Useful Link</li>
+                <li class="nav-item">
+                  <a class="nav-link gold hvr-underline-from-center" href="user-manual/index.html">
+                    <i class="fa fa-question-circle mr-1" aria-hidden="true"></i>
+                    User Manual
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link gold hvr-underline-from-center" href="report.html">
+                    <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>Safety Info
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link gold hvr-underline-from-center"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfVInBReL6jOT4gp7yr4a5wM-FbeHyoVobUfpJr9MqFZmMBPA/viewform?usp=sf_link"
+                    target="_blank" rel="noopener noreferrer"><i class="fa fa-commenting-o mr-1" aria-hidden="true"></i>
+                    Feedback?</a>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link gold hvr-underline-from-center" href="icon-nav/index.html">
+                    Thumbnail View
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link gold hvr-underline-from-center" href="item-info.html" target="blank">
+                    Item Info Page
+                  </a>
+                </li>
+  
+                <li class="nav-item ">
+                  <a class="nav-link gold hvr-underline-from-center" href="Editlisting.html" target="blank">
+                    Post Item
+                  </a>
+                </li>
+  
+                <li class="nav-item ">
+                  <a class="nav-link gold hvr-underline-from-center" href="order-history/item-editing.html" target="blank">
+                    Edit Item
+                  </a>
+                </li> -->
+
+              </ul>
+
+            </div>
+
+          </nav>
+        </div>
+        <div class="col-md-9 content">
+
+          <div class="container">
+            <div class="dashhead">
+              <div class="dashhead-titles">
+                <h6 class="dashhead-subtitle">Category</h6>
+                <h3 class="dashhead-title" style="color: #ffb71b; font-weight: 500;">Category</h3>
+              </div>
+
+              <div class="dashhead-toolbar">
+                <div class="input-with-icon dashhead-toolbar-item">
+                  <input type="text" value="01/01/15 - 01/08/15" class="form-control" data-provide="datepicker">
+                  <span class="icon icon-calendar"></span>
+                </div>
+                <span class="dashhead-toolbar-divider hidden-sm-down"></span>
+                <div class="btn-group dashhead-toolbar-item btn-group-thirds">
+                  <button type="button" class="btn btn-outline-primary">Day</button>
+                  <button type="button" class="btn btn-outline-primary active">Week</button>
+                  <button type="button" class="btn btn-outline-primary">Month</button>
+                </div>
+              </div>
+            </div>
+
+            <ul class="nav nav-bordered mt-4 mt-md-2 mb-0 clearfix" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a href="#galary" class="nav-link active" role="tab" data-toggle="tab" aria-controls="galary">Galary
+                  View</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a href="#thumb" class="nav-link" role="tab" data-toggle="tab" aria-controls="thumb">Thumb</a>
+              </li>
+            </ul>
+
+            <hr class="mt-0 mb-5">
+
+            <!-- Gallery View -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="galary">
+                <div class="row ex-graphs text-center mb-5">
+                  <div class="col-sm-4  m-b-md">
+                    <div class="w-lg m-x-auto">
+                      <canvas id="batman" class="ex-graph" width="200" height="200"
+                        style="border:5px solid #ffb71b;   ">
+                      </canvas>
+                    </div>
+                    <span><small class="badge badge-danger badge-pill">$90</small></span>
+                    <h3 class="mb-5 text-shadow description1" data-toggle="tooltip" data-placement="bottom"
+                      title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam est quaerat labore voluptas tempora distinctio, placeat mollitia sunt quia">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. At magnam est quaerat labore voluptas
+                      tempora distinctio, placeat mollitia sunt quia.</h3>
+                  </div>
+
+                  <div class="col-sm-4 mb-5 mb-sm-0 ">
+                    <div class="w-4 mx-auto">
+                      <canvas id="batman" class="ex-graph" width="200" height="200"
+                        style="border:5px solid #ffb71b;   ">
+                      </canvas>
+                    </div>
+                    <span><small class="badge badge-danger badge-pill">$90</small></span>
+                    <h3 class="mb-5 text-shadow">Item Name</h3>
+                  </div>
+
+                  <div class="col-sm-4 mb-5 mb-sm-0 ">
+                    <div class="w-4 mx-auto">
+                      <canvas id="batman" class="ex-graph" width="200" height="200"
+                        style="border:5px solid #ffb71b;   ">
+                      </canvas>
+                    </div>
+                    <span><small class="badge badge-danger badge-pill">$90</small></span>
+                    <h3 class="mb-5 text-shadow">Item Name</h3>
+                  </div>
+
+                  <div class="col-sm-4 mb-5 mb-sm-0 ">
+                    <div class="w-4 mx-auto">
+                      <canvas id="batman" class="ex-graph" width="200" height="200"
+                        style="border:5px solid #ffb71b;   ">
+                      </canvas>
+                    </div>
+                    <span><small class="badge badge-danger badge-pill">$90</small></span>
+                    <h3 class="mb-5 text-shadow">Item Name</h3>
+                  </div>
+
+                  <div class="col-sm-4 mb-5 mb-sm-0 ">
+                    <div class="w-4 mx-auto">
+                      <canvas id="batman" class="ex-graph" width="200" height="200"
+                        style="border:5px solid #ffb71b;   ">
+                      </canvas>
+                    </div>
+                    <span><small class="badge badge-danger badge-pill">$90</small></span>
+                    <h3 class="mb-5 text-shadow">Item Name</h3>
+                  </div>
+
+                  <div class="col-sm-4 mb-5 mb-sm-0 ">
+                    <div class="w-4 mx-auto">
+                      <canvas id="batman" class="ex-graph" width="200" height="200"
+                        style="border:5px solid #ffb71b;   ">
+                      </canvas>
+                    </div>
+                    <span><small class="badge badge-danger badge-pill">$90</small></span>
+                    <h3 class="mb-5 text-shadow">Item Name</h3>
+                  </div>
+                </div>
+
+                <!-- pagination  -->
+                <div class="text d-flex justify-content-center">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+
+
+              <!-- Thumbnail View -->
+              <div role="tabpanel" class="tab-pane" id="thumb">
+                <div class="row">
+                  <div class="col-lg-12 mb-md-3">
+                    <div class="w-lg m-x-auto">
+                      <div id="batman" class="ex-graph float-left m-2 mr-4">
+                      </div>
+                    </div>
+                    <div class="m-0">
+
+                      <h2 class=" text-shadow" style=" font-size: 19px !important;">Lorem ipsum dolor sit ame</h2>
+                      <span><small class="badge badge-danger badge-pill">$90</small></span>
+                      <p class=" mt-3 text-muted description" data-toggle="tooltip" data-placement="bottom"
+                        title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo quia praesentium veniam corrupti vitae iure earum nulla accusantium asperiores itaque, deleniti et animi porro maxime magni consequatur minima perspiciatis quos. Voluptatem necessitatibus architecto expedita, quidem reprehenderit officiis suscipit distinctio voluptatibus reiciendis ratione voluptates corporis est, sequi velit iste, at a!">
+                        Lorem ipsum dolor sit amet.
+                      </p>
+                      <a href="#" class="badge badge-primary">View More</a>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 mb-md-4 hr-divider"></div>
+
+                  <div class="col-lg-12 mb-md-3">
+                    <div class="w-lg m-x-auto">
+                      <div id="batman" class="ex-graph float-left m-2 mr-4" style="width: 200px; height: 200px;">
+                      </div>
+                    </div>
+                    <div class="m-0">
+
+                      <h2 class=" text-shadow">Batman Sticker</h2>
+                      <span><small class="badge badge-danger badge-pill">$90</small></span>
+                      <p class=" mt-3 text-muted description" data-toggle="tooltip" data-placement="bottom"
+                        title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo quia praesentium veniam corrupti vitae iure earum nulla accusantium asperiores itaque, deleniti et animi porro maxime magni consequatur minima perspiciatis quos. Voluptatem necessitatibus architecto expedita, quidem reprehenderit officiis suscipit distinctio voluptatibus reiciendis ratione voluptates corporis est, sequi velit iste, at a!">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo quia praesentium veniam corrupti
+                        vitae iure earum nulla accusantium asperiores itaque, deleniti et animi porro maxime magni
+                        consequatur minima perspiciatis quos. Voluptatem necessitatibus architecto expedita, quidem
+                        reprehenderit officiis suscipit distinctio voluptatibus reiciendis ratione voluptates corporis
+                        est, sequi velit iste, at a!
+                      </p>
+                      <a href="#" class="badge badge-primary">View More</a>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 mb-md-4 hr-divider"></div>
+
+                  <div class="col-lg-12 mb-md-3">
+                    <div class="w-lg m-x-auto">
+                      <div id="batman" class="ex-graph float-left m-2 mr-4" style="width: 200px; height: 200px;">
+                      </div>
+                    </div>
+                    <div class="m-0">
+
+                      <h2 class=" text-shadow">Batman Sticker</h2>
+                      <span><small class="badge badge-danger badge-pill">$90</small></span>
+                      <p class=" mt-3 text-muted description" data-toggle="tooltip" data-placement="bottom"
+                        title="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo quia praesentium veniam corrupti vitae iure earum nulla accusantium asperiores itaque, deleniti et animi porro maxime magni consequatur minima perspiciatis quos. Voluptatem necessitatibus architecto expedita, quidem reprehenderit officiis suscipit distinctio voluptatibus reiciendis ratione voluptates corporis est, sequi velit iste, at a!">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo quia praesentium veniam corrupti
+                        vitae iure earum nulla accusantium asperiores itaque, deleniti et animi porro maxime magni
+                        consequatur minima perspiciatis quos. Voluptatem necessitatibus architecto expedita, quidem
+                        reprehenderit officiis suscipit distinctio voluptatibus reiciendis ratione voluptates corporis
+                        est, sequi velit iste, at a!
+                      </p>
+                      <a href="#" class="badge badge-primary">View More</a>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <!-- pagination  -->
+                <div class="text d-flex justify-content-center">
+                  <ul class="pagination">
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                
+              </div>
+            
+
+              <script src="../assets/js/jquery.min.js"></script>
+              <script src="../assets/js/tether.min.js"></script>
+              <script src="../assets/js/chart.js"></script>
+              <script src="../assets/js/tablesorter.min.js"></script>
+              <script src="../assets/js/toolkit.js"></script>
+              <script src="../assets/js/application.js"></script>
+              <script src="../assets/js/popper.min.js"></script>
+              <script>
+                $(function () {
+                  $('[data-toggle="tooltip"]').tooltip()
+                })
+                // execute/clear BS loaders for docs
+                $(function () { while (window.BS && window.BS.loader && window.BS.loader.length) { (window.BS.loader.pop())() } })
+              </script>
+</body>
+
+</html>
